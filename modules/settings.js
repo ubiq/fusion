@@ -236,13 +236,13 @@ class Settings {
         ipcPath = this.userHomePath;
 
         if (process.platform === 'darwin') {
-            ipcPath += '/Library/Ethereum/geth.ipc';
+            ipcPath += '/Library/Ubiq/gubiq.ipc';
         } else if (process.platform === 'freebsd' ||
        process.platform === 'linux' ||
        process.platform === 'sunos') {
-            ipcPath += '/.ethereum/geth.ipc';
+            ipcPath += '/.ubiq/gubiq.ipc';
         } else if (process.platform === 'win32') {
-            ipcPath = '\\\\.\\pipe\\geth.ipc';
+            ipcPath = '\\\\.\\pipe\\gubiq.ipc';
         }
 
         this._log.debug(`IPC path: ${ipcPath}`);
