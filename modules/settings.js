@@ -18,7 +18,7 @@ try {
 
 
 const argv = require('yargs')
-    .usage('Usage: $0 [Mist options] [Node options]')
+    .usage('Usage: $0 [Fusion options] [Node options]')
     .option({
         mode: {
             alias: 'm',
@@ -28,16 +28,16 @@ const argv = require('yargs')
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         node: {
             demand: false,
             default: null,
-            describe: 'Node to use: geth, eth',
+            describe: 'Node to use: gubiq, eth',
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         network: {
             demand: false,
@@ -46,7 +46,7 @@ const argv = require('yargs')
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         rpc: {
             demand: false,
@@ -54,39 +54,39 @@ const argv = require('yargs')
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
-        gethpath: {
+        gubiqpath: {
             demand: false,
-            describe: 'Path to Geth executable to use instead of default.',
+            describe: 'Path to Gubiq executable to use instead of default.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
-        },
+            group: 'Fusion options:',
+        },/*
         ethpath: {
             demand: false,
             describe: 'Path to Eth executable to use instead of default.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
-        },
+            group: 'Fusion options:',
+        },*/
         'ignore-gpu-blacklist': {
             demand: false,
             describe: 'Ignores GPU blacklist (needed for some Linux installations).',
             requiresArg: false,
             nargs: 0,
             type: 'boolean',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         'reset-tabs': {
             demand: false,
-            describe: 'Reset Mist tabs to their default settings.',
+            describe: 'Reset Fusion tabs to their default settings.',
             requiresArg: false,
             nargs: 0,
             type: 'boolean',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         logfile: {
             demand: false,
@@ -94,7 +94,7 @@ const argv = require('yargs')
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         loglevel: {
             demand: false,
@@ -103,19 +103,19 @@ const argv = require('yargs')
             requiresArg: true,
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
+            group: 'Fusion options:',
         },
         version: {
             alias: 'v',
             demand: false,
             requiresArg: false,
             nargs: 0,
-            describe: 'Display Mist version.',
-            group: 'Mist options:',
+            describe: 'Display Fusion version.',
+            group: 'Fusion options:',
             type: 'boolean',
         },
         '': {
-            describe: 'To pass options to the underlying node (e.g. Geth) use the --node- prefix, e.g. --node-datadir',
+            describe: 'To pass options to the underlying node (e.g. Gubiq) use the --node- prefix, e.g. --node-datadir',
             group: 'Node options:',
         },
     })
@@ -152,7 +152,7 @@ class Settings {
     }
 
     get userDataPath() {
-    // Application Aupport/Mist
+    // Application Aupport/Fusion
         return app.getPath('userData');
     }
 
@@ -179,7 +179,7 @@ class Settings {
     }
 
     get appName() {
-        return this.uiMode === 'mist' ? 'Mist' : 'Ethereum Wallet';
+        return this.uiMode === 'mist' ? 'Fusion' : 'Ethereum Wallet';
     }
 
     get appLicense() {
@@ -199,13 +199,13 @@ class Settings {
     }
 
     get gethPath() {
-        return argv.gethpath;
+        return argv.gubiqpath;
     }
-
+    /*
     get ethPath() {
         return argv.ethpath;
     }
-
+    */
     get rpcMode() {
         return (argv.rpc && argv.rpc.indexOf('.ipc') < 0) ? 'http' : 'ipc';
     }
