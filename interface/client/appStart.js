@@ -17,7 +17,7 @@ mistInit = function(){
     Tabs.onceSynced.then(function() {
         if (0 <= location.search.indexOf('reset-tabs')) {
             console.info('Resetting UI tabs');
-            
+
             Tabs.remove({});
         }
 
@@ -26,16 +26,16 @@ mistInit = function(){
 
             Tabs.insert({
                 _id: 'browser',
-                url: 'https://ethereum.org',
-                redirect: 'https://ethereum.org',
+                url: 'http://staging.ubiqsmart.io',
+                redirect: 'http://staging.ubiqsmart.io',
                 position: 0
             });
         }
 
         // overwrite wallet on start again, but use $set to dont remove titles
         Tabs.upsert({_id: 'wallet'}, {$set: {
-                url: 'https://wallet.ethereum.org',
-                redirect: 'https://wallet.ethereum.org',
+                url: 'https://wallet.ubiqsmart.io/',
+                redirect: 'https://wallet.ubiqsmart.io/',
                 position: 1,
                 permissions: {
                     admin: true
@@ -62,7 +62,7 @@ Meteor.startup(function(){
     console.debug('Setting language');
 
     // SET default language
-    if(Cookie.get('TAPi18next')) {        
+    if(Cookie.get('TAPi18next')) {
         TAPi18n.setLanguage(Cookie.get('TAPi18next'));
     } else {
         var userLang = navigator.language || navigator.userLanguage,
@@ -87,4 +87,3 @@ Meteor.startup(function(){
         }
     });
 });
-
