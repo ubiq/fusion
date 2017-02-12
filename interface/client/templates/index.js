@@ -19,14 +19,14 @@ Template.body.helpers({
     */
     'renderApp': function(){
         if(_.isEmpty(location.hash)) {
-            $('title').text('Mist');
+            $('title').text('Fusion');
             return 'layout_main';
         } else {
             var renderWindow = location.hash.match(/#([a-zA-Z]*)_?/);
 
             if (renderWindow.length>0)
                 return 'popupWindows_' + renderWindow[1];
-            else 
+            else
                 return false;
         }
     }
