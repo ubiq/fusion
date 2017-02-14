@@ -353,13 +353,13 @@ class EthereumNode extends EventEmitter {
                 // START TESTNET
                 if (network == 'test') {
                     args = (nodeType === 'geth')
-                        ? ['--testnet', '--fast', '--ipcpath', Settings.rpcIpcPath]
+                        ? ['--testnet', '--ipcpath', Settings.rpcIpcPath]
                         : ['--morden', '--unsafe-transactions'];
                 }
                 // START MAINNET
                 else {
                     args = (nodeType === 'geth')
-                        ? ['--fast', '--cache', '1024']
+                        ? ['--cache', '1024']
                         : ['--unsafe-transactions'];
                 }
 
