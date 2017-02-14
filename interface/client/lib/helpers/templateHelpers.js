@@ -64,7 +64,7 @@ Return the friendly app name.
 @method (appName)
 **/
 Template.registerHelper('appName', function(){
-    return window.mistMode === 'mist' ? 'Mist' : 'Ethereum Wallet';
+    return window.mistMode === 'mist' ? 'Fusion' : 'Ethereum Wallet';
 });
 
 /**
@@ -82,7 +82,7 @@ Get the current user agent
 @method (useragent)
 **/
 Template.registerHelper('useragent', function(){
-    return navigator.userAgent + ' Ethereum ' + (window.mistMode === 'mist' ? 'Mist' : 'Wallet');
+    return navigator.userAgent + ' Ubiq ' + (window.mistMode === 'mist' ? 'Fusion' : 'Wallet');
 });
 
 /**
@@ -174,9 +174,3 @@ Formats a number.
 @return {String} The formatted number
 **/
 Template.registerHelper('formatBalance', Helpers.formatBalance);
-
-
-
-
-
-

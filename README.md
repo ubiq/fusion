@@ -1,26 +1,25 @@
-# Mist Browser
+# Fusion Browser
 
-[![Join the chat at https://gitter.im/ethereum/mist](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ethereum/mist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status develop branch](https://travis-ci.org/ethereum/mist.svg?branch=develop)](https://travis-ci.org/ethereum/mist)
 [![Code Climate](https://codeclimate.com/github/ethereum/mist/badges/gpa.svg)](https://codeclimate.com/github/ethereum/mist)
 
-The Mist browser is the tool of choice to browse and use Ðapps.
+The Fusion browser is the tool of choice to browse and use Ðapps.
 
-For the Mist API see the [MISTAPI.md](MISTAPI.md).
+For the Fusion API see the [MISTAPI.md](MISTAPI.md).
 
 ## Installation
 
-If you want install the app from a pre-built version on the [release page](https://github.com/ethereum/mist/releases),
+If you want install the app from a pre-built version on the [release page](https://github.com/ubiq/fusion/releases),
 you can simply run the executeable after download.
 
 For updating simply download the new version and copy it over the old one (keep a backup of the old one if you want to be sure).
 
 #### Config folder
-The data folder for Mist is stored in other places:
+The data folder for Fusion is stored in other places:
 
-- Windows `%APPDATA%\Mist`
-- macOS `~/Library/Application Support/Mist`
-- Linux `~/.config/Mist`
+- Windows `%APPDATA%\Fusion`
+- macOS `~/Library/Application Support/Fusion`
+- Linux `~/.config/Fusion`
 
 
 ## Development
@@ -36,7 +35,7 @@ Requirements:
 * Node v6.0 or above
 * [Yarn package manager](https://yarnpkg.com/)
 
-To run mist in development you need [Node.js NPM](https://nodejs.org) and [Meteor](https://www.meteor.com/install) and electron installed:
+To run fusion in development you need [Node.js NPM](https://nodejs.org) and [Meteor](https://www.meteor.com/install) and electron installed:
 
     $ curl https://install.meteor.com/ | sh
     $ npm install -g electron@1.3.13
@@ -51,30 +50,30 @@ _Linux:_
 
 ### Installation
 
-Now you're ready to install Mist:
+Now you're ready to install Fusion:
 
-    $ git clone https://github.com/ethereum/mist.git
-    $ cd mist
+    $ git clone https://github.com/ubiq/fusion.git
+    $ cd fusion
     $ git submodule update --init
     $ yarn
 
-To update Mist in the future, run:
+To update Fusion in the future, run:
 
-    $ cd mist
+    $ cd fusion
     $ git pull && git submodule update
     $ yarn
 
 #### Options
 It may be preferable to only download platform-specific nodes by passing the `--platform` flag, please refer to the [options section](#platform).
 
-### Run Mist
+### Run Fusion
 
 For development we start the interface with a Meteor server for autoreload etc.
 *Start the interface in a separate terminal window:*
 
     $ cd mist/interface && meteor --no-release-check
 
-In the original window you can then start Mist with:
+In the original window you can then start Fusion with:
 
     $ cd mist
     $ electron .
@@ -93,7 +92,7 @@ Start the wallet app for development, *in a separate terminal window:*
 
     $ cd my/path/meteor-dapp-wallet/app && meteor --port 3050
 
-In the original window you can then start Mist using wallet mode:
+In the original window you can then start Fusion using wallet mode:
 
     $ cd mist
     $ electron . --mode wallet
@@ -109,43 +108,43 @@ $ electron . --rpc http://localhost:8545
 ```
 
 
-### Passing options to Geth
+### Passing options to Gubiq
 
-You can pass command-line options directly to Geth by prefixing them with `--node-` in
+You can pass command-line options directly to Gubiq by prefixing them with `--node-` in
 the command-line invocation:
 
 ```bash
 $ electron . --mode mist --node-rpcport 19343 --node-networkid 2
 ```
 
-The `--rpc` Mist option is a special case. If you set this to an IPC socket file
+The `--rpc` Fusion option is a special case. If you set this to an IPC socket file
 path then the `--ipcpath` option automatically gets set, i.e.:
 
 ```bash
-$ electron . --rpc /my/geth.ipc
+$ electron . --rpc /my/gubiq.ipc
 ```
 
 ...is the same as doing...
 
 
 ```bash
-$ electron . --rpc /my/geth.ipc --node-ipcpath /my/geth.ipc
+$ electron . --rpc /my/gubiq.ipc --node-ipcpath /my/gubiq.ipc
 ```
 
-### Using Mist with a privatenet
+### Using Fusion with a privatenet
 
 To run a private network you will need to set the IPC path, network id and data
 folder:
 
 ```bash
-$ electron . --rpc ~/Library/Ethereum/geth.ipc --node-networkid 1234  --node-datadir ~/Library/Ethereum/privatenet
+$ electron . --rpc ~/Library/Ubiq/gubiq.ipc --node-networkid 1234  --node-datadir ~/Library/Ubiq/privatenet
 ```
 
-_NOTE: since `ipcpath` is also a Mist option you do not need to also include a
+_NOTE: since `ipcpath` is also a Fusion option you do not need to also include a
 `--node-ipcpath` option._
 
-You can also run `geth` separately yourself with the same options prior to start
-Mist normally.
+You can also run `gubiq` separately yourself with the same options prior to start
+Fusion normally.
 
 
 ### Deployment
@@ -162,11 +161,8 @@ To create a binaries you need to install [`electron-builder` dependencies](https
 
 To generate the binaries simply run:
 
-    $ cd mist
+    $ cd fusion
     $ gulp
-
-    // Or to generate the wallet (using the https://github.com/ethereum/meteor-dapp-wallet -> master)
-    $ gulp wallet
 
 This will generate the binaries inside the `dist_mist/release` or `dist_wallet/release` folder.
 

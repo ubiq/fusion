@@ -7,8 +7,10 @@
     flex-direction: column;
     height: 100%;
     position: relative;
+    background-color: #111;
+    color: #fff;
     // background: lighten(@colorOSBackgroundFocus, 10%);
-    
+
     .main-content {
         z-index: 1;
         flex: 1 100%;
@@ -55,7 +57,7 @@
             display: block;
             padding: @gridHeight*4 @gridWidth;
             margin: @gridHeight 0;
-            background: lighten(@colorLinkActive, 30%);
+            background: #111;
             border: dashed 3px @colorLinkActive;
             border-radius: 3px;
             text-align: center;
@@ -70,13 +72,14 @@
         .dapp-block-button {
             margin: 0 auto;
             background-color: transparent;
-            border: solid 1px @colorLinkActive; 
+            border: solid 1px @colorLinkActive;
             font-size: 80%;
         }
 
         input {
             background-color: transparent;
-            border-bottom: dashed 1px;
+            border-bottom: dashed 1px @colorLinkActive;
+            color: #00ea90;
         }
 
         input.name {
@@ -109,7 +112,7 @@
             }
         }
         .right-align {
-            right: @gridWidth * 2; 
+            right: @gridWidth * 2;
         }
 
         .col-left {
@@ -201,7 +204,7 @@
     &.active-start .onboarding-start {
         display: block;
         opacity: 1;
-        background-position-x: @gridWidth;        
+        background-position-x: @gridWidth;
         z-index: 100;
         transition-delay: 0.3s;
         p {
@@ -216,7 +219,7 @@
         transition-duration: 0s;
         .col-6.col-left {
             transform: scale(0.9) translateZ(-10px);
-            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;  
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
         }
     }
 
@@ -228,8 +231,8 @@
     }
 
     .onboarding-account .col-deposit {
-            text-align: center;        
-    }    
+            text-align: center;
+    }
 
     .onboarding-password {
         transition: none;
@@ -330,10 +333,10 @@
         .col-6 {
             transition-delay: 0;
         }
-    } 
+    }
 
-    .onboarding-tutorial-1 .tutorial-token, 
-    .onboarding-tutorial-2 .tutorial-crowdsale, 
+    .onboarding-tutorial-1 .tutorial-token,
+    .onboarding-tutorial-2 .tutorial-crowdsale,
     .onboarding-tutorial-3 .tutorial-dao {
         position: relative;
         top: @gridHeight * -1;

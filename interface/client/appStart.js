@@ -5,12 +5,12 @@ if(location.hash)
     return;
 
 /**
-The init function of Mist
+The init function of Fusion
 
 @method mistInit
 */
 mistInit = function(){
-    console.info('Initialise Mist Interface');
+    console.info('Initialise Fusion Interface');
 
     EthBlocks.init();
 
@@ -26,16 +26,16 @@ mistInit = function(){
 
             Tabs.insert({
                 _id: 'browser',
-                url: 'http://staging.ubiqsmart.io',
-                redirect: 'http://staging.ubiqsmart.io',
+                url: 'http://ubiqsmart.com',
+                redirect: 'http://ubiqsmart.com',
                 position: 0
             });
         }
 
         // overwrite wallet on start again, but use $set to dont remove titles
         Tabs.upsert({_id: 'wallet'}, {$set: {
-                url: 'https://wallet.ubiqsmart.io/',
-                redirect: 'https://wallet.ubiqsmart.io/',
+                url: 'https://wallet.ubiqsmart.io',
+                redirect: 'https://wallet.ubiqsmart.io',
                 position: 1,
                 permissions: {
                     admin: true

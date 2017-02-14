@@ -342,7 +342,7 @@ let menuTempl = function (webviews) {
         label: i18n.t('mist.applicationMenu.develop.devTools'),
         submenu: devtToolsSubMenu,
     });
-
+    /*
     if (Settings.uiMode === 'mist') {
         devToolsMenu.push({
             label: i18n.t('mist.applicationMenu.develop.openRemix'),
@@ -361,7 +361,7 @@ let menuTempl = function (webviews) {
                 });
             },
         });
-    }
+    }*/
 
     devToolsMenu.push({
         label: i18n.t('mist.applicationMenu.develop.runTests'),
@@ -398,7 +398,7 @@ let menuTempl = function (webviews) {
         if (gethClient) {
             nodeSubmenu.push(
                 {
-                    label: `Geth ${gethClient.version} (Go)`,
+                    label: `Gubiq ${gethClient.version} (Go)`,
                     checked: ethereumNode.isOwnNode && ethereumNode.isGeth,
                     enabled: ethereumNode.isOwnNode,
                     type: 'checkbox',

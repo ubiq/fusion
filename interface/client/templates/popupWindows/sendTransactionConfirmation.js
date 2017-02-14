@@ -211,7 +211,7 @@ Template['popupWindows_sendTransactionConfirmation'].helpers({
     'estimatedFee': function() {
         var gas =  TemplateVar.get('estimatedGas');
         if(gas && this.gasPrice)
-            return EthTools.formatBalance(new BigNumber(gas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000] unit', 'ether');
+            return EthTools.formatBalance(new BigNumber(gas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000]', 'ether') + ' ubiq';
     },
     /**
     Calculates the provided gas amount in ether

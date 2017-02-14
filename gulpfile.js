@@ -43,7 +43,7 @@ if (options.platform.indexOf(',') !== -1) {
 
 // CONFIG
 let type = 'mist';
-let applicationName = 'Mist';
+let applicationName = 'Fusion';
 const electronVersion = require('electron/package.json').version;
 const packJson = require('./package.json');
 
@@ -52,14 +52,14 @@ const version = packJson.version;
 const osArchList = [
     'mac-x64',
     'linux-x64',
-    'linux-ia32',
+//    'linux-ia32',
     'win-x64',
-    'win-ia32',
+//    'win-ia32',
 ];
 
 
 console.log('You can select a platform like: --platform <mac|win|linux|all>');
-console.log('Mist version:', version);
+console.log('Fusion version:', version);
 console.log('Electron version:', electronVersion);
 
 if (_.contains(options.platform, 'all')) {
@@ -84,7 +84,7 @@ function platformIsActive(osArch) {
 // TASKS
 gulp.task('set-variables-mist', () => {
     type = 'mist';
-    applicationName = 'Mist';
+    applicationName = 'Fusion';
 });
 gulp.task('set-variables-wallet', () => {
     type = 'wallet';
@@ -231,7 +231,7 @@ gulp.task('build-dist', ['copy-i18n'], (cb) => {
         name: applicationName.replace(/\s/, ''),
         productName: applicationName,
         description: applicationName,
-        homepage: 'https://github.com/ethereum/mist',
+        homepage: 'https://github.com/ubiq/fusion',
         build: {
             appId: `com.ethereum.${type}`,
             category: 'public.app-category.productivity',
