@@ -13,7 +13,7 @@ const log = require('./utils/logger').create('ClientBinaryManager');
 
 
 // should be       'https://raw.githubusercontent.com/ethereum/mist/master/clientBinaries.json'
-const BINARY_URL = 'https://raw.githubusercontent.com/ubiq/fusion/master/clientBinaries.json';
+const BINARY_URL = 'https://raw.githubusercontent.com/ubiq/fusion/develop/clientBinaries.json';
 
 const ALLOWED_DOWNLOAD_URLS_REGEX =
     /^http:\/\/(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)?staging\.ubiqsmart\.io\/|gethstore\.blob\.core\.windows\.net\/|bintray\.com\/artifact\/download\/karalabe\/ethereum\/)(?:.+)/;  // eslint-disable-line max-len

@@ -37,7 +37,7 @@
             "develop": {
                 "label": "Zhvillo",
                 "devTools": "Kalo tek Mjetet e Zhvilluesit",
-                "devToolsMistUI": "Mist UI",
+                "devToolsMistUI": "Fusion UI",
                 "devToolsWalletUI": "Kuletë UI",
                 "devToolsWebview": "__webview__",
                 "runTests": "Fillo testimet",

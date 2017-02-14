@@ -37,7 +37,7 @@
             "develop": {
                 "label": "Utvikle",
                 "devTools": "Veksle Mellom Utviklerverktøy",
-                "devToolsMistUI": "Mist UI",
+                "devToolsMistUI": "Fusion UI",
                 "devToolsWalletUI": "Lommebok UI",
                 "devToolsWebview": "__webview__",
                 "runTests": "Kjør tester",

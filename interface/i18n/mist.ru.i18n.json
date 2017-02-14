@@ -37,7 +37,7 @@
             "develop": {
                 "label": "Дополнительно",
                 "devTools": "Выбрать инструмент разработчика",
-                "devToolsMistUI": "Mist UI",
+                "devToolsMistUI": "Fusion UI",
                 "devToolsWalletUI": "Wallet UI",
                 "devToolsWebview": "__webview__",
                 "runTests": "Запустить тесты",

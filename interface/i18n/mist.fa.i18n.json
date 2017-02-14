@@ -37,7 +37,7 @@
             "develop": {
                 "label": "Develop",
                 "devTools": "Toggle Developer Tools",
-                "devToolsMistUI": "Mist UI",
+                "devToolsMistUI": "Fusion UI",
                 "devToolsWalletUI": "Wallet UI",
                 "devToolsWebview": "__webview__",
                 "runTests": "Run tests",
