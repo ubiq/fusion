@@ -233,7 +233,7 @@ gulp.task('build-dist', ['copy-i18n'], (cb) => {
         description: applicationName,
         homepage: 'https://github.com/ubiq/fusion',
         build: {
-            appId: `com.ubiqsmart.${type}`,
+            appId: `com.ubiqsmart.fusion`,
             category: 'public.app-category.productivity',
             asar: true,
             files: [
