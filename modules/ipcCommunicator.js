@@ -126,10 +126,8 @@ ipc.on('backendAction_checkWalletFile', (e, path) => {
             *               [ 'web3', 3 ]   web3 (v3) keyfile
             *                        null   no valid  keyfile
             */
-
-            if (_.first(result) === 'ethersale') {
-                e.sender.send('uiAction_checkedWalletFile', null, 'presale');
-            } else if (_.first(result) === 'web3') {
+            log.warn(result);
+            if (_.first(result) === 'web3') {
                 e.sender.send('uiAction_checkedWalletFile', null, 'web3');
 
                 let keystorePath = Settings.userHomePath;
@@ -142,13 +140,13 @@ ipc.on('backendAction_checkWalletFile', (e, path) => {
                     }
                 // geth
                 } else {
-                    if (process.platform === 'darwin') keystorePath += '/Library/Ethereum/keystore';
+                    if (process.platform === 'darwin') keystorePath += '/Library/Ubiq/keystore';
 
                     if (process.platform === 'freebsd' ||
                         process.platform === 'linux' ||
-                        process.platform === 'sunos') keystorePath += '/.ethereum/keystore';
+                        process.platform === 'sunos') keystorePath += '/.ubiq/keystore';
 
-                    if (process.platform === 'win32') keystorePath = `${Settings.appDataPath}\\Ethereum\\keystore`;
+                    if (process.platform === 'win32') keystorePath = `${Settings.appDataPath}\\Ubiq\\keystore`;
                 }
 
                 fs.writeFile(`${keystorePath}/0x${wallet.address}`, data, (err) => {
