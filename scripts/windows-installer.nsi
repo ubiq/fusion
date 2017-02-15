@@ -25,22 +25,22 @@ CRCCheck on
 # Require admin privledges when UAC is on
 RequestExecutionLevel admin
 
-!define APPNAME "Mist"
-!define GROUPNAME "Ethereum"
-!define HELPURL "https://github.com/ethereum/mist/releases/issues"
-!define UPDATEURL "https://github.com/ethereum/mist/releases"
-!define ABOUTURL "https://ethereum.org"
+!define APPNAME "Fusion"
+!define GROUPNAME "Ubiq"
+!define HELPURL "https://github.com/ubiq/fusion/releases/issues"
+!define UPDATEURL "https://github.com/ubiq/fusion/releases"
+!define ABOUTURL "http://ubiqsmart.com"
 !define /date NOW "%Y%m%d"
 
 ## These must be integers and can be set on the command line by NSIS with "/DMAJORVERSION=0 /DMINORVERSION=8 /DBUILDVERSION=7"
 #!define VERSIONMAJOR 0
 #!define VERSIONMINOR 8
-#!define VERSIONBUILD 7
+#!define VERSIONBUILD 9
 
 # Define some script globals
 Name "${GROUPNAME} ${APPNAME}"
 Icon "..\dist_mist\build\icon.ico"
-OutFile "..\dist_mist\release\mist-installer-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.exe"
+OutFile "..\dist_mist\release\fusion-installer-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.exe"
 var FILEDIR
 var DATADIR
 var NODEDATADIR
@@ -65,7 +65,7 @@ ${EndIf}
 
     SetShellVarContext current
     StrCpy $DATADIR "$APPDATA\${APPNAME}"
-    StrCpy $NODEDATADIR "$APPDATA\Ethereum"
+    StrCpy $NODEDATADIR "$APPDATA\Ubiq"
     StrCpy $SHORTCUTDIR "$SMPROGRAMS\${APPNAME}"
     StrCpy $DESKTOPDIR "$DESKTOP"
 
@@ -137,7 +137,7 @@ Section Mist MIST_IDX
     SetOutPath $TEMP
     # include both architecture zip files
     file "..\dist_mist\release\${APPNAME}-win64-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
-    file "..\dist_mist\release\${APPNAME}-win32-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
+    # file "..\dist_mist\release\${APPNAME}-win32-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
     file "..\dist_mist\build\icon.ico"
 
     # Extract the zip file from TEMP to the user's selected installation directory
@@ -148,15 +148,15 @@ Section Mist MIST_IDX
       ZipDLL::extractALL "$TEMP\${APPNAME}-win32-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip" "$FILEDIR"
       StrCpy $ARCHDIR "win-ia32-unpacked"
     ${Endif}
-    
+
     # Move files out of subfolder
     !insertmacro MoveFolder "$FILEDIR\$ARCHDIR" "$FILEDIR" "*.*"
     # Copy icon from installer (not included in zip)
     !insertmacro MoveFile "$TEMP\icon.ico" "$FILEDIR\logo.ico"
- 
+
     # create the uninstaller
     WriteUninstaller "$FILEDIR\uninstall.exe"
- 
+
     # create shortcuts with flags in the start menu programs directory
     createDirectory "$SHORTCUTDIR"
     createShortCut "$SHORTCUTDIR\${APPNAME}.lnk" "$FILEDIR\${APPNAME}.exe" '--node-datadir="$NODEDATADIR"' "$FILEDIR\${APPNAME}.exe" 0
@@ -168,9 +168,9 @@ Section Mist MIST_IDX
     CreateShortCut "$SHORTCUTDIR\Uninstall.lnk" "$FILEDIR\uninstall.exe"
 
     ## Firewall - add rules
-    #SimpleFC::AdvAddRule "Geth incoming peers (TCP:30303)" ""  6 1 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\geth.exe" "" "" "Ethereum" 30303 "" "" ""
-    #SimpleFC::AdvAddRule "Geth outgoing peers (TCP:30303)" ""  6 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\geth.exe" "" "" "Ethereum" "" 30303 "" ""
-    #SimpleFC::AdvAddRule "Geth UDP discovery (UDP:30303)" "" 17 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\geth.exe" "" "" "Ethereum" "" 30303 "" ""
+    #SimpleFC::AdvAddRule "Gubiq incoming peers (TCP:30303)" ""  6 1 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" 30388 "" "" ""
+    #SimpleFC::AdvAddRule "Gubiq outgoing peers (TCP:30303)" ""  6 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
+    #SimpleFC::AdvAddRule "Gubiq UDP discovery (UDP:30303)" "" 17 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
 
     # write registry strings for uninstallation
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${GROUPNAME} ${APPNAME}" "DisplayName" "${GROUPNAME} ${APPNAME}"
@@ -211,7 +211,7 @@ function un.onInit
   call un.setenv
   !insertmacro VerifyUserIsAdmin
 functionEnd
- 
+
 # uninstaller section start
 Section "uninstall"
     # get user settings from registry
@@ -237,9 +237,9 @@ Section "uninstall"
     rmDir /r /REBOOTOK "$FILEDIR"
 
     ## Firewall - remove rules (if exists)
-    #SimpleFC::AdvRemoveRule "Geth incoming peers (TCP:30303)"
-    #SimpleFC::AdvRemoveRule "Geth outgoing peers (TCP:30303)"
-    #SimpleFC::AdvRemoveRule "Geth UDP discovery (UDP:30303)"
+    #SimpleFC::AdvRemoveRule "Gubiq incoming peers (TCP:30388)"
+    #SimpleFC::AdvRemoveRule "Gubiq outgoing peers (TCP:30388)"
+    #SimpleFC::AdvRemoveRule "Gubiq UDP discovery (UDP:30388)"
 
     # delete registry strings
     DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${GROUPNAME} ${APPNAME}"
