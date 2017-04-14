@@ -2,7 +2,7 @@
 {
     "clients": {
         "Geth": {
-            "version": "1.5.10",
+            "version": "1.5.11",
             "platforms": {
                 "linux": {
                     "x64": {
