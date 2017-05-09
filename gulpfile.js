@@ -363,7 +363,7 @@ gulp.task('upload-binaries', () => {
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
     // query github releases
-    return got(`https://api.github.com/repos/ethereum/mist/releases?access_token=${GITHUB_TOKEN}`, {
+    return got(`https://api.github.com/repos/ubiq/fusion/releases?access_token=${GITHUB_TOKEN}`, {
         json: true,
     })
     // filter draft with current version's tag
@@ -385,7 +385,7 @@ gulp.task('upload-binaries', () => {
         if (!_.isEmpty(existingAssets)) throw new Error(`Github release draft already contains assets (${existingAssets}); will not upload, please remove and trigger rebuild`);
 
         return githubUpload({
-            url: `https://uploads.github.com/repos/ethereum/mist/releases/${draft.id}/assets{?name}`,
+            url: `https://uploads.github.com/repos/ubiq/fusion/releases/${draft.id}/assets{?name}`,
             token: [GITHUB_TOKEN],
             assets: filePaths,
         }).then((res) => {
