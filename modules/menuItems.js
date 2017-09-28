@@ -234,38 +234,6 @@ let menuTempl = function (webviews) {
                         },
                     },
                 ],
-            },
-            {
-                type: 'separator',
-            },
-            {
-                label: i18n.t('mist.applicationMenu.file.swarmUpload'),
-                accelerator: 'Shift+CommandOrControl+U',
-                click() {
-                    const focusedWindow = BrowserWindow.getFocusedWindow();
-                    const paths = dialog.showOpenDialog(focusedWindow, {
-                        properties: ['openFile', 'openDirectory']
-                    });
-                    if (paths && paths.length === 1) {
-                        const isDir = fs.lstatSync(paths[0]).isDirectory();
-                        const defaultPath = path.join(paths[0], 'index.html');
-                        const uploadConfig = {
-                            path: paths[0],
-                            kind: isDir ? 'directory' : 'file',
-                            defaultFile: fs.existsSync(defaultPath) ? '/index.html' : null
-                        };
-                        swarmNode.upload(uploadConfig).then((hash) => {
-                            focusedWindow.webContents.executeJavaScript(`
-                              Tabs.update('browser', {$set: {
-                                  url: 'bzz://${hash}',
-                                  redirect: 'bzz://${hash}'
-                              }});
-                              LocalStore.set('selectedTab', 'browser');
-                            `);
-                            console.log('Hash uploaded:', hash);
-                        }).catch(e => console.log(e));
-                    }
-                }
             }]
     });
 
@@ -431,34 +399,14 @@ let menuTempl = function (webviews) {
         label: i18n.t('mist.applicationMenu.develop.devTools'),
         submenu: devtToolsSubMenu,
     });
-    /*
-    if (Settings.uiMode === 'mist') {
-        devToolsMenu.push({
-            label: i18n.t('mist.applicationMenu.develop.openRemix'),
-            enabled: true,
-            click() {
-                Windows.createPopup('remix', {
-                    url: 'https://remix.ethereum.org',
-                    electronOptions: {
-                        width: 1024,
-                        height: 720,
-                        center: true,
-                        frame: true,
-                        resizable: true,
-                        titleBarStyle: 'default',
-                    }
-                });
-            },
-        });
-    }*/
 
-    devToolsMenu.push({
+    /*devToolsMenu.push({
         label: i18n.t('mist.applicationMenu.develop.runTests'),
         enabled: (Settings.uiMode === 'mist'),
         click() {
             Windows.getByType('main').send('uiAction_runTests', 'webview');
         },
-    });
+    });*/
 
     devToolsMenu.push({
         label: i18n.t('mist.applicationMenu.develop.logFiles') + externalNodeMsg,
@@ -536,23 +484,13 @@ let menuTempl = function (webviews) {
                 },
             },
             {
-                label: 'Ropsten - Test network',
+                label: 'Test network',
                 accelerator: 'CommandOrControl+Alt+2',
                 checked: ethereumNode.isOwnNode && ethereumNode.network === 'test',
                 enabled: ethereumNode.isOwnNode,
                 type: 'checkbox',
                 click() {
                     restartNode(ethereumNode.type, 'test');
-                },
-            },
-            {
-                label: 'Rinkeby - Test network',
-                accelerator: 'CommandOrControl+Alt+3',
-                checked: ethereumNode.isOwnNode && ethereumNode.network === 'rinkeby',
-                enabled: ethereumNode.isOwnNode,
-                type: 'checkbox',
-                click() {
-                    restartNode(ethereumNode.type, 'rinkeby');
                 },
             },
             {
@@ -566,19 +504,6 @@ let menuTempl = function (webviews) {
                 },
             }
         ] });
-
-    // Light mode switch should appear when not in Solo Mode (dev network)
-    if (ethereumNode.isOwnNode && ethereumNode.isGeth && !ethereumNode.isDevNetwork) {
-        devToolsMenu.push({
-            label: 'Sync with Light client (beta)',
-            enabled: true,
-            checked: ethereumNode.isLightMode,
-            type: 'checkbox',
-            click() {
-                restartNode('geth', null, (ethereumNode.isLightMode) ? 'fast' : 'light');
-            },
-        });
-    }
 
     // Enables mining menu: only in Solo mode and Ropsten network (testnet)
     if (ethereumNode.isOwnNode && (ethereumNode.isTestNetwork || ethereumNode.isDevNetwork)) {
@@ -655,12 +580,7 @@ let menuTempl = function (webviews) {
     helpMenu.push({
         label: i18n.t('mist.applicationMenu.help.mistWiki'),
         click() {
-            shell.openExternal('https://github.com/ethereum/mist/wiki');
-        },
-    }, {
-        label: i18n.t('mist.applicationMenu.help.gitter'),
-        click() {
-            shell.openExternal('https://gitter.im/ethereum/mist');
+            shell.openExternal('https://github.com/ubiq/fusion/wiki');
         },
     }, {
         label: i18n.t('mist.applicationMenu.help.reportBug'),
