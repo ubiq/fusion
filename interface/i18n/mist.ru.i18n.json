@@ -26,7 +26,7 @@
                 "fullscreen": "Полноэкранный режим",
                 "default": "По умолчанию"
             },
-            "accounts": {
+            "file": {
                 "label": "Аккаунты",
                 "importPresale": "Импорт аккаунтов",
                 "newAccount": "Создать аккаунт",
@@ -35,6 +35,7 @@
                 "backupMist": "Данных приложения"
             },
             "develop": {
+                "uploadToSwarm": "Загрузить в Swarm",
                 "label": "Дополнительно",
                 "devTools": "Выбрать инструмент разработчика",
                 "devToolsMistUI": "Fusion UI",
@@ -45,7 +46,7 @@
                 "ethereumNode": "Ubiq-нода",
                 "network": "Сеть",
                 "mainNetwork": "Основная сеть",
-                "startMining": "⛏ Запустить майнинг (только для тестовой сети)",
+                "startMining": "⛏ Запустить майнинг",
                 "stopMining": "⛏ Остановить майнинг",
                 "externalNode": "using external node",
                 "openRemix": "Open Remix IDE",
@@ -119,8 +120,8 @@
             "startingNode": "Запуск Ubiq-ноды...",
             "stoppingNode": "Остановка Ubiq-ноды...",
             "startedNode": "Запуск приложения...",
-            "nodeConnectionTimeout": "Не удалось запустить Ubiq-ноду!<br><small>Если вы <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>установили Geth</a>, используйте следующую команду для запуска: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> Либо сообщите от проблеме </a></small>",
-            "nodeBinaryNotFound": "Не найдены программные файлы для Ubiq-ноды!<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> Пожалуйста, для начала изучите руководство. </a> </small>",
+            "nodeConnectionTimeout": "Не удалось запустить Ubiq-ноду!<br><small>Если вы <a href='https://ubiqsmart.com' class='button' target='_blank'>установили Gubiq</a>, используйте следующую команду для запуска: <br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> Либо сообщите от проблеме </a></small>",
+            "nodeBinaryNotFound": "Не найдены программные файлы для Ubiq-ноды!<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> Пожалуйста, для начала изучите руководство. </a> </small>",
             "nodeStarting": "Ubiq-нода запускается...",
             "nodeStarted": "Ubiq-нода запущена",
             "nodeConnected": "Ubiq-нода подключена",
@@ -133,7 +134,6 @@
             "nodeSyncInfoStates": "Загружено блоков __displayBlock__ из __highestBlock__, <br> Загружено частей структуры блокчейна __displayState__ из __displayKnownStates__",
             "nodeSyncConnecting": "Поиск пиров...",
             "nodeSyncFoundPeers": "Количество подключеных пиров __peers__...",
-            "nodeSyncingStopped": "Остановилась синхронизация Ubiq-ноды",
             "peerSearchTimeout": "Пропустить поиск пиров",
             "launchApp": "Запуск приложения",
             "clientBinaries": {
@@ -199,11 +199,13 @@
                 "showRawBytecode": "show raw data",
                 "showDecodedParameters": "show decoded parameters",
                 "lookupData": "Try to decode data",
-                "lookupDataExplainer": "Look this up on the internet"
+                "lookupDataExplainer": "Look this up on the internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Etherium представляет собой децентрализованную платформу основанную на блокчейне для создания надежных и децентрализованных приложений",
-                "goToTestnet": "Использовать тестовую сеть",
+                "goToTestnet": "Использовать тестовую сеть (Rinkeby)",
                 "goToTestnetDescription": "Свободное тестирование технологии в тестовой сети (sandbox), без использования реального эфира.",
                 "gotoMainnet": "Использовать основную сеть",
                 "gotoMainnetDescription": "Вам потребуется некоторое количество эфира для того, чтобы создавать и выполнять контракты. Не волнуйтесь, мы вам поможем получить некоторое количество...",

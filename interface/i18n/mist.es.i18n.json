@@ -26,8 +26,8 @@
                 "fullscreen": "Pantalla Completa",
                 "default": "Default"
             },
-            "accounts": {
-                "label": "Cuentas",
+            "file": {
+                "label": "Arquivo",
                 "importPresale": "Importar Cuentas",
                 "newAccount": "Nueva cuenta",
                 "backup": "Copia de seguridad",
@@ -35,6 +35,7 @@
                 "backupMist": "Datos de la aplicación"
             },
             "develop": {
+                "uploadToSwarm": "Upload a Swarm",
                 "label": "Desarrollo",
                 "devTools": "Herramientas para desarrolladores",
                 "devToolsMistUI": "UI de Mist",
@@ -45,7 +46,7 @@
                 "ethereumNode": "Nodo de Ubiq",
                 "network": "Red",
                 "mainNetwork": "Red principal",
-                "startMining": "⛏ Empezar a minar (sólo Testnet)",
+                "startMining": "⛏ Empezar a minar",
                 "stopMining": "⛏ Parar de minar",
                 "externalNode": "using external node",
                 "openRemix": "Open Remix IDE",
@@ -118,8 +119,8 @@
             "runningNodeFound": "Encontrado nodo Ubiq funcionando!",
             "startingNode": "Iniciando el nodo Ubiq...",
             "startedNode": "Iniciando la aplicación...",
-            "nodeConnectionTimeout": "No se pudo iniciar un nodo Ubiq!<br><small>Si <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>has instalado Geth</a>, utiliza este comando para ejecutarlo: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> O informa del problema </a></small>",
-            "nodeBinaryNotFound": "No se ha encontrado el binario del nodo Ubiq!<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> Por favor, inicie antes uno manualmente. </a> </small>",
+            "nodeConnectionTimeout": "No se pudo iniciar un nodo Ubiq!<br><small>Si <a href='https://ubiqsmart.com' class='button' target='_blank'>has instalado Gubiq</a>, utiliza este comando para ejecutarlo: <br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> O informa del problema </a></small>",
+            "nodeBinaryNotFound": "No se ha encontrado el binario del nodo Ubiq!<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> Por favor, inicie antes uno manualmente. </a> </small>",
             "nodeSyncing": "El nodo de Ubiq necesita sincronizarse, por favor espere...",
             "nodeSyncInfo": "Descargando bloque __displayBlock__ de __highestBlock__.",
             "nodeSyncConnecting": "Buscando pares...",
@@ -134,7 +135,6 @@
             "unableToBindPort": "Ubiq node cannot run. Is another instance already running?",
             "nodeSyncInfoStates": "Downloading block __displayBlock__ of __highestBlock__, <br> Downloading chain structure __displayState__ of __displayKnownStates__",
             "nodeSyncFoundPeers": "Connecting to __peers__ peers...",
-            "nodeSyncingStopped": "Ubiq node sync stopped",
             "launchApp": "Launch Application",
             "clientBinaries": {
                 "scanning": "Checking for node update...",
@@ -197,7 +197,9 @@
                 "showRawBytecode": "show raw data",
                 "showDecodedParameters": "show decoded parameters",
                 "lookupData": "Try to decode data",
-                "lookupDataExplainer": "Look this up on the internet"
+                "lookupDataExplainer": "Look this up on the internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Ubiq es una plataforma descentralizada para la construcción de aplicaciones en una blockchain: segura y a prueba de manipulaciones que puede transferir valor, propiedad y vive para siempre",

@@ -26,7 +26,7 @@
                 "fullscreen": "Veksle Mellom Fullskjerm",
                 "default": "Default"
             },
-            "accounts": {
+            "file": {
                 "label": "Kontoer",
                 "importPresale": "Importer Kontoer",
                 "newAccount": "Ny konto",
@@ -35,6 +35,7 @@
                 "backupMist": "Applikasjonsdata"
             },
             "develop": {
+                "uploadToSwarm": "Opplasting til Swarm",
                 "label": "Utvikle",
                 "devTools": "Veksle Mellom Utviklerverktøy",
                 "devToolsMistUI": "Fusion UI",
@@ -45,7 +46,7 @@
                 "ethereumNode": "Ubiq Node",
                 "network": "Nettverk",
                 "mainNetwork": "Hovednettverk",
-                "startMining": "⛏ Start Mining (Kun testnett)",
+                "startMining": "⛏ Start Mining",
                 "stopMining": "⛏ Stopp Mining",
                 "externalNode": "using external node",
                 "openRemix": "Open Remix IDE",
@@ -119,8 +120,8 @@
             "startingNode": "Starter Ubiq-node...",
             "stoppingNode": "Stopper Ubiq-node...",
             "startedNode": "Starter applikasjonen...",
-            "nodeConnectionTimeout": "Kunne ikke starte Ubiq-node!<br><small>Hvis du <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>installerte Geth</a>, bruk denne kommandoen for å kjøre det: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> Eller rapporter et problem </a></small>",
-            "nodeBinaryNotFound": "Ingen Ubiq-node kilde funnet!<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> Vennligst start en manuelt først. </a> </small>",
+            "nodeConnectionTimeout": "Kunne ikke starte Ubiq-node!<br><small>Hvis du <a href='https://ubiqsmart.com' class='button' target='_blank'>installerte Gubiq</a>, bruk denne kommandoen for å kjøre det: <br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> Eller rapporter et problem </a></small>",
+            "nodeBinaryNotFound": "Ingen Ubiq-node kilde funnet!<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> Vennligst start en manuelt først. </a> </small>",
             "nodeStarting": "Ubiq-node starter opp...",
             "nodeStarted": "Ubiq-node startet",
             "nodeConnected": "Ubiq-node tilkoblet",
@@ -131,7 +132,6 @@
             "nodeSyncing": "Ubiq-node trenger å synkroniseres, vennligst vent...",
             "nodeSyncInfo": "Laster ned blokk __currentBlock__ av __highestBlock__.",
             "nodeSyncConnecting": "Leter etter peers...",
-            "nodeSyncingStopped": "Ubiq-node synkronisering stoppet",
             "peerSearchTimeout": "Hopp over peer søk",
             "launchApp": "Start Applikasjonen",
             "nodeSyncInfoStates": "Downloading block __displayBlock__ of __highestBlock__, <br> Downloading chain structure __displayState__ of __displayKnownStates__",
@@ -197,7 +197,9 @@
                 "showRawBytecode": "show raw data",
                 "showDecodedParameters": "show decoded parameters",
                 "lookupData": "Try to decode data",
-                "lookupDataExplainer": "Look this up on the internet"
+                "lookupDataExplainer": "Look this up on the internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Ubiq er en desentralisert plattform for å bygge applikasjoner på en blokkjede: sabotasjesikker programvare som kan overføre verdi og eiendom, og som lever evig",

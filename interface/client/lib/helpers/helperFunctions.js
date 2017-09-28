@@ -39,8 +39,8 @@ Get the webview from either and ID, or the string "browser"
 @method getWebview
 @param {String} id  The Id of a tab or the string "browser"
 */
-Helpers.getWebview = function(id){
-    return $('webview[data-id="'+ id +'"]')[0];
+Helpers.getWebview = function (id) {
+    return $('webview[data-id="' + id + '"]')[0];
 };
 
 /**
@@ -50,22 +50,24 @@ Get tab by url and return the id
 @param {String} url
 @return {String} id
 */
-Helpers.getTabIdByUrl= function(url, returnEmpty){
+Helpers.getTabIdByUrl = function (url, returnEmpty) {
     var tabs = Tabs.find().fetch();
     url = Helpers.sanitizeUrl(url);
 
-    var foundTab = _.find(tabs, function(tab){
-            if(tab._id === 'browser' || !tab.url)
-                return false;
-            var tabOrigin = new URL(tab.url).origin;
-            return (url && new URL(url).origin.indexOf(tabOrigin) === 0);
-        });
+    var foundTab = _.find(tabs, function (tab) {
+        if (tab._id === 'browser' || !tab.url) {
+            return false;
+        }
+        var tabOrigin = new URL(tab.url).origin;
+        return (url && new URL(url).origin.indexOf(tabOrigin) === 0);
+    });
 
     // switch tab to browser
-    if(foundTab)
+    if (foundTab) {
         foundTab = foundTab._id;
-    else
+    } else {
         foundTab = 'browser';
+    }
 
     return foundTab;
 };
@@ -76,10 +78,23 @@ Format Urls, e.g add a default protocol if on is missing.
 @method formatUrl
 @param {String} url
 **/
-Helpers.formatUrl = function(url){
+Helpers.formatUrl = function (url) {
+    if (!url) return;
+
     // add http:// if no protocol is present
-    if(url && url.indexOf('://') === -1)
-        url = 'http://'+ url;
+    if (url.length === 64 && !!url.match(/^[0-9a-f]+$/)) {
+        // if the url looks like a hash, add bzz
+        url = 'bzz://' + url;
+    } else if (!!url.match(/^([a-z]*:\/\/)?[^/]*\.eth(\/.*)?$/i)) {
+        // if uses .eth as a TLD
+        url = 'bzz://' + url.replace(/^([a-z]*:\/\/)?/i, '');
+    } else if (!!url.match(/^[^\.\/]*$/i)) {
+        // doesn't have a protocol nor a TLD
+        url = 'bzz://' + url + '.eth';
+    } else if (url.indexOf('://') === -1) {
+        // if it doesn't have a protocol
+        url = 'http://' + url;
+    }
 
     return url;
 };
@@ -90,13 +105,13 @@ Sanatizes URLs to prevent phishing and XSS attacks
 @method sanitizeUrl
 @param {String} url
 **/
-Helpers.sanitizeUrl = function(url, returnEmptyURL){
+Helpers.sanitizeUrl = function (url, returnEmptyURL) {
     url = String(url);
 
     url = url.replace(/[\t\n\r\s]+/g, '');
     url = url.replace(/^[:\/]{1,3}/i, 'http://');
 
-    if(returnEmptyURL && /^(?:file|javascript|data):/i.test(url)) {
+    if (returnEmptyURL && /^(?:file|javascript|data):/i.test(url)) {
         url = false;
     }
 
@@ -128,7 +143,7 @@ Helpers.generateBreadcrumb = function (url) {
         return el === '';
     });
 
-    return new Spacebars.SafeString(filteredUrl.protocol +'//'+ _.flatten(['<span>' + filteredUrl.host + ' </span>', pathname]).join(' ▸ '));
+    return new Spacebars.SafeString(filteredUrl.protocol + '//' + _.flatten(['<span>' + filteredUrl.host + ' </span>', pathname]).join(' ▸ '));
 };
 
 /**
@@ -139,7 +154,7 @@ Clear localStorage
 Helpers.getLocalStorageSize = function () {
 
     var size = 0;
-    if(localStorage) {
+    if (localStorage) {
         _.each(Object.keys(localStorage), function (key) {
             size += localStorage[key].length * 2 / 1024 / 1024;
         });
@@ -188,7 +203,9 @@ Helpers.selectTabWithOffset = function (offset) {
     currentTabIndex = tabList.indexOf(LocalStore.get('selectedTab'));
 
     newTabIndex = (currentTabIndex + offset) % tabList.length;
-    if (newTabIndex < 0) newTabIndex = tabList.length - 1;
+    if (newTabIndex < 0) {
+        newTabIndex = tabList.length - 1;
+    }
 
     LocalStore.set('selectedTab', tabList[newTabIndex]);
 };
@@ -205,6 +222,7 @@ Helpers.detectNetwork = function (hash) {
     case '0x406f1b7dd39fca54d8c702141851ed8b755463ab5b560e6f19b963b4047418af':
         console.log('Network is mainnet');
         network.type = 'mainnet';
+        network.name = 'Main';
         break;
 
     case '0xc85d1bdaba72c05665642c468d1b480ed3fc1cb3ebf97111a1009783ebc308dc':
@@ -216,6 +234,7 @@ Helpers.detectNetwork = function (hash) {
     default:
         console.log('Network is privatenet');
         network.type = 'privatenet';
+        network.name = 'Private';
     }
 
     return network;

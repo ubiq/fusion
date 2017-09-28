@@ -8,9 +8,18 @@
                 "checkForNodeUpdates": "Check for Ubiq node updates...",
                 "services": "Services",
                 "hide": "Hide __app__",
-                "hideOthers": "Hide Others",
-                "showAll": "Show All",
+                "hideOthers": "Hide others",
+                "showAll": "Show all",
                 "quit": "Quit __app__"
+            },
+            "file": {
+                "label": "File",
+                "importPresale": "Import accounts",
+                "newAccount": "New account",
+                "backup": "Backup",
+                "backupKeyStore": "Accounts",
+                "backupMist": "Application data",
+                "swarmUpload": "Upload to Swarm..."
             },
             "edit": {
                 "label": "Edit",
@@ -23,10 +32,10 @@
             },
             "view": {
                 "label": "View",
-                "fullscreen": "Toggle Fullscreen",
-                "languages": "Change language",
+                "fullscreen": "Toggle full screen",
+                "languages": "Language",
                 "default": "Default",
-                "langCodes" : {
+                "langCodes": {
                     "de": "Deutsch",
                     "en": "English",
                     "es": "Español",
@@ -44,17 +53,9 @@
                     "zh-TW": "國語"
                 }
             },
-            "accounts": {
-                "label": "Accounts",
-                "importPresale": "Import Accounts",
-                "newAccount": "New account",
-                "backup": "Backup",
-                "backupKeyStore": "Accounts",
-                "backupMist": "Application Data"
-            },
             "develop": {
                 "label": "Develop",
-                "devTools": "Toggle Developer Tools",
+                "devTools": "Toggle developer tools",
                 "devToolsMistUI": "Fusion UI",
                 "devToolsWalletUI": "Wallet UI",
                 "devToolsWebview": "__webview__",
@@ -68,29 +69,30 @@
                 "nodeMode": "Chain download",
                 "fullNode": "Store full blockchain",
                 "lightNode": "Use light Node (experimental!)",
-                "mainNetwork": "Main Network",
-                "startMining": "⛏ Start Mining (Testnet only)",
-                "stopMining": "⛏ Stop Mining"
+                "startMining": "⛏ Start mining",
+                "stopMining": "⛏ Stop mining"
             },
             "window": {
                 "label": "Window",
                 "minimize": "Minimize",
                 "close": "Close",
-                "toFront": "Bring All to Front"
+                "toFront": "Bring all to front"
             },
             "help": {
                 "label": "Help",
+                "mistWiki": "Troubleshooting and Help",
+                "gitter": "Mist channel on Gitter",
                 "reportBug": "Report an issue on Github"
             }
         },
         "errors": {
             "nodeConnect": "Couldn't connect to node? See the logs for more:",
-            "nodeStartup": "It seems like the node couldn't be started, do you already have one running? Is it upgrading the database right now?",
+            "nodeStartup": "It seems like the node couldn't be started.  Do you already have one running? Is it upgrading the database right now?",
             "timeSync": {
                 "title": "Your computer's clock is not synced.",
                 "description": "To successfully synchronize with the Ubiq network you need to sync your computer's clock with a time sync server.",
                 "win32": "Go to your Internet Time Settings in your system preferences and check the box. See this guide for details: http://www.guidingtech.com/3119/windows-clock-sync/",
-                "linux": "To enable a time sync server install \"ntp\" via \"apt-get install ntp\".",
+                "linux": "To enable a time sync server, install \"ntp\" via \"apt-get install ntp\".",
                 "darwin": "To enable time sync, open the time preferences and check \"Set the time and date automatically\"."
             },
            "nodeChecksumMismatch": {
@@ -99,17 +101,18 @@
             },
             "legacyChain": {
                 "title": "Legacy chain detected",
-                "description": "Your node is currently on the unsupported Ethereum Classic chain. To use this chain use tools provided by the ethereum classic project at\nhttps://ethereumclassic.github.io.\n\nTo revert to the main ethereum chain follow the tutorial here:\nhttps://github.com/ethereum/mist/releases/0.8.2"
+                "description": "Your node is currently on the unsupported Ethereum Classic chain. To use this chain, use tools provided by the ethereum classic project at\nhttps://ethereumclassic.github.io.\n\nTo revert to the main ethereum chain follow the tutorial here:\nhttps://github.com/ethereum/mist/releases/0.8.2"
             }
         },
         "rightClick": {
             "reload": "Reload",
-            "openDevTools": "Open Developer Tools",
-            "inspectElements": "Inspect Element"
+            "openDevTools": "Open developer tools",
+            "inspectElements": "Inspect element"
         },
         "nodeInfo": {
             "nodeSyncing": "__blockDiff__ blocks left",
-            "blockReceived": "New Block Received",
+            "blockReceived": "New block received",
+            "blockReceivedShort": "New block",
             "blockNumber": "Your latest block number",
             "timeSinceBlock": "Elapsed time since last block",
             "checkingWhichNetwork": "Checking network...",
@@ -125,6 +128,11 @@
         "sidebar": {
             "buttons": {
                 "browser": "Browse"
+            },
+            "submenu": {
+                "account": "Account",
+                "account_plural": "Accounts",
+                "connectAccounts": "Connect Accounts"
             }
         },
         "browserBar": {
@@ -138,8 +146,8 @@
             "startingNode": "Starting Ubiq node...",
             "stoppingNode": "Stopping Ubiq node...",
             "startedNode": "Starting application...",
-            "nodeConnectionTimeout": "Couldn't start Ubiq node!<br><small>If you <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>installed Geth</a>, use this command to run it: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> Or report an issue </a></small>",
-            "nodeBinaryNotFound": "No Ubiq node binary found!<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> Please start one manually before. </a> </small>",
+            "nodeConnectionTimeout": "Couldn't start Ubiq node!<br><small>If you <a href='https://ubiqsmart.com' class='button' target='_blank'>installed Gubiq</a>, use this command to run it: <br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> Or report an issue </a></small>",
+            "nodeBinaryNotFound": "No Ubiq node binary found!<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> Please start one manually before. </a> </small>",
             "nodeStarting": "Ubiq node starting up...",
             "nodeStarted": "Ubiq node started",
             "nodeConnected": "Ubiq node connected",
@@ -152,7 +160,6 @@
             "nodeSyncInfoStates": "Downloading block __displayBlock__ of __highestBlock__, <br> Downloading chain structure __displayState__ of __displayKnownStates__",
             "nodeSyncConnecting": "Looking for peers...",
             "nodeSyncFoundPeers": "Connecting to __peers__ peers...",
-            "nodeSyncingStopped": "Ubiq node sync stopped",
             "peerSearchTimeout": "Skip peer search",
             "launchApp": "Launch Application",
             "clientBinaries": {
@@ -182,6 +189,7 @@
                 "enterPassword": "Enter password",
                 "repeatPassword": "Repeat password",
                 "creating": "Generating account...",
+                "backupHint": "Make sure you backup your keyfiles AND password!\n\nYou can find your keyfiles folder using the main menu -> Accounts -> Backup -> Accounts. Keep a copy of the \"keystore\" folder where you can't lose it!",
                 "errors": {
                     "passwordMismatch": "Your passwords don't match.",
                     "passwordTooShort": "Make a longer password"
@@ -192,7 +200,7 @@
                 "enterPassword": "Enter master password",
                 "unlocking": "Unlocking...",
                 "errors": {
-                    "wrongPassword": "Password is wrong, try again."
+                    "wrongPassword": "Password is wrong. Try again."
                 }
             },
             "sendTransactionConfirmation": {
@@ -223,8 +231,8 @@
                 "errors": {
                     "connectionTimeout": "Couldn't connect to the node, did it crash in the background?",
                     "wrongPassword": "Wrong password",
-                    "multipleKeysMatchAddress": "Multiple keys match address, please remove duplicates from keystore (menu -> accounts -> backup -> accounts)",
-                    "insufficientFundsForGas": "Insufficient funds in main account (ubiqbase) to pay for gas",
+                    "multipleKeysMatchAddress": "Multiple keys match address.  Please remove duplicates from keystore (menu -> accounts -> backup -> accounts)",
+                    "insufficientFundsForGas": "Insufficient funds in main account (etherbase) to pay for gas",
                     "sameAccount": "Can't send to itself"
                 },
                 "showRawBytecode": "show raw data",
@@ -261,9 +269,9 @@
                 "syncMessage": "Block __displayBlock__ of __highestBlockString__",
                 "syncMessageWithStates": "Block __displayBlock__ of __highestBlockString__ (Chain structure __statesPercent__%)",
                 "startingSync": "Getting ready to sync..",
-                "tutorial1Description" : "<p> Now the only thing left to do is wait for the download to finish. Here's some reading suggestions: </p> <h4>Make your own money </h4> <p> Make a cryptocurrency with a fixed market supply, tokens representing real world assets, etc </p>",
-                "tutorial2Description" : "<h4> Create a crowdsale </h4> <p> Raise funds for a common goal, fully trustable without a third party. Sidestep the hurdle of traditional funding system and go directly to the source by funding an organization via the blockchain.</p>",
-                "tutorial3Description" : "<h4> Create a blockchain organization </h4> <p> Create an autonomous organization with rules on spending money and making decisions for you and your investors.</p>",
+                "tutorial1Description": "<p> Now the only thing left to do is wait for the download to finish. Here are some reading suggestions: </p> <h4>Make your own money </h4> <p> Make a cryptocurrency with a fixed market supply, tokens representing real world assets, etc </p>",
+                "tutorial2Description": "<h4> Create a crowdsale </h4> <p> Raise funds for a common goal, fully trustable without a third party. Sidestep the hurdle of traditional funding system and go directly to the source by funding an organization via the blockchain.</p>",
+                "tutorial3Description": "<h4> Create a blockchain organization </h4> <p> Create an autonomous organization with rules on spending money and making decisions for you and your investors.</p>",
                 "buttons": {
                     "showPassword": "Show password",
                     "importAccount": "Import account",
@@ -281,18 +289,18 @@
                 "chooseAccountTitle": "Choose account",
                 "createAccount": "Create new account",
                 "pinToSidebar": "Pin app to the sidebar",
-                "connectAccountDescription": "You are sharing your identity with __dappName__. This allows the app to see any public information of your accounts, including balances connected to it."
+                "connectAccountDescription": "You are sharing your identity with __dappName__. This allows the app to see any public information related to your accounts, including balances connected to it."
             }
         }
     },
     "elements": {
         "checksumAlert":"This address looks valid, but it doesn't have some security features that will protect you against typos, so double check you have the right one. If provided, check if the security icon matches.",
-        "identiconHelper": "This is a security icon, if there's any change on the address the resulting icon should be a completely different one",
+        "identiconHelper": "This is a security icon.  If there were any change to the address, the resulting icon would be a completely different one",
         "type": {
-            "address" : "Address",
-            "bool" : "Boolean",
-            "int" : "Integer",
-            "uint" : "Natural Number",
+            "address": "Address",
+            "bool": "Boolean",
+            "int": "Integer",
+            "uint": "Natural Number",
             "string": "String",
             "bytes": "Bytes"
         }

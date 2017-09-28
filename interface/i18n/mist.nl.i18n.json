@@ -44,7 +44,7 @@
                     "zh-TW": "國語"
                 }
             },
-            "accounts": {
+            "file": {
                 "label": "Accounts",
                 "importPresale": "Importeer Accounts",
                 "newAccount": "Nieuw account",
@@ -53,6 +53,7 @@
                 "backupMist": "Applicatie Data"
             },
             "develop": {
+                "uploadToSwarm": "Uploaden naar Swarm",
                 "label": "Ontwikkelen",
                 "devTools": "Ontwikkelaars Opties Inschakelen",
                 "devToolsMistUI": "Fusion UI",
@@ -68,7 +69,7 @@
                 "fullNode": "Bewaar volledige blockchain",
                 "lightNode": "Gebruik light Node (experimenteel!)",
                 "mainNetwork": "Hoofdnetwerk",
-                "startMining": "⛏ Start Mining (Alleen testnet)",
+                "startMining": "⛏ Start Mining",
                 "stopMining": "⛏ Stop Mining"
             },
             "window": {
@@ -137,8 +138,8 @@
             "startingNode": "Ubiq node starten...",
             "stoppingNode": "Ubiq node stoppen...",
             "startedNode": "Applicatie starten...",
-            "nodeConnectionTimeout": "Ubiq node opstarten niet mogelijk!<br><small>Als je <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>Geth geinstalleerd hebt</a>, gebruik dan dit commando om het op te starten: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> Of meld een fout </a></small>",
-            "nodeBinaryNotFound": "Geen Ubiq node gevonden!<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> Start er a.u.b. handmatig een. </a> </small>",
+            "nodeConnectionTimeout": "Ubiq node opstarten niet mogelijk!<br><small>Als je <a href='https://ubiqsmart.com' class='button' target='_blank'>Gubiq geinstalleerd hebt</a>, gebruik dan dit commando om het op te starten: <br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> Of meld een fout </a></small>",
+            "nodeBinaryNotFound": "Geen Ubiq node gevonden!<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> Start er a.u.b. handmatig een. </a> </small>",
             "nodeStarting": "Ubiq node opstarten...",
             "nodeStarted": "Ubiq node gestart",
             "nodeConnected": "Ubiq node verbonden",
@@ -151,7 +152,6 @@
             "nodeSyncInfoStates": "Blok __displayBlock__ van __highestBlock__ aan het downloaden, <br> Chain structuur __displayState__ van __displayKnownStates__ aan het downloaden",
             "nodeSyncConnecting": "Zoeken naar peers...",
             "nodeSyncFoundPeers": "Verbinden met __peers__ peers...",
-            "nodeSyncingStopped": "Ubiq node sync gestopt",
             "peerSearchTimeout": "Sla peer search over",
             "launchApp": "Applicatie Opstarten",
             "clientBinaries": {
@@ -227,7 +227,9 @@
                 "showRawBytecode": "Toon ruwe data",
                 "showDecodedParameters": "Toon gedecodeerde parameters",
                 "lookupData": "Probeer de data te decoderen",
-                "lookupDataExplainer": "Zoek hiernaar op het internet"
+                "lookupDataExplainer": "Zoek hiernaar op het internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Ubiq is een decentraal platform voor het bouwen van applicaties op een blockchain: software die immuun is voor fraude en levenslang waarde en eigendom over kan brengen",

@@ -4,6 +4,7 @@ const fs = require('fs');
 const logger = require('./utils/logger');
 const packageJson = require('../package.json');
 const _ = require('./utils/underscore');
+const lodash = require('lodash');
 
 
 // try loading in config file
@@ -51,6 +52,15 @@ const argv = require('yargs')
         rpc: {
             demand: false,
             describe: 'Path to node IPC socket file OR HTTP RPC hostport (if IPC socket file then --node-ipcpath will be set with this value).',
+            requiresArg: true,
+            nargs: 1,
+            type: 'string',
+            group: 'Fusion options:',
+        },
+        swarmurl: {
+            demand: false,
+            default: 'http://localhost:8500',
+            describe: 'URL serving the Swarm HTTP API. If null, Mist will open a local node.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
@@ -105,6 +115,14 @@ const argv = require('yargs')
             type: 'string',
             group: 'Fusion options:',
         },
+        syncmode: {
+            demand: false,
+            requiresArg: true,
+            describe: 'Geth synchronization mode: [fast|light|full]',
+            nargs: 1,
+            type: 'string',
+            group: 'Mist options:',
+        },
         version: {
             alias: 'v',
             demand: false,
@@ -133,8 +151,6 @@ for (const optIdx in argv) {
         if (argv[optIdx] !== true) {
             argv.nodeOptions.push(argv[optIdx]);
         }
-
-        break;
     }
 }
 
@@ -143,6 +159,9 @@ if (argv.ipcpath) {
     argv.nodeOptions.push('--ipcpath', argv.ipcpath);
 }
 
+if (argv.nodeOptions && argv.nodeOptions.syncmode) {
+    argv.push('--syncmode', argv.nodeOptions.syncmode);
+}
 
 class Settings {
     init() {
@@ -179,7 +198,7 @@ class Settings {
     }
 
     get appName() {
-        return this.uiMode === 'mist' ? 'Fusion' : 'Ethereum Wallet';
+        return this.uiMode === 'mist' ? 'Fusion' : 'Ubiq Wallet';
     }
 
     get appLicense() {
@@ -198,6 +217,10 @@ class Settings {
         return !!process.env.TEST_MODE;
     }
 
+    get swarmURL() {
+        return argv.swarmurl;
+    }
+
     get gethPath() {
         return argv.gubiqpath;
     }
@@ -207,7 +230,14 @@ class Settings {
     }
     */
     get rpcMode() {
-        return (argv.rpc && argv.rpc.indexOf('.ipc') < 0) ? 'http' : 'ipc';
+        if (argv.rpc && argv.rpc.indexOf('http') === 0)
+            return 'http';
+        if (argv.rpc && argv.rpc.indexOf('ws:') === 0) {
+            this._log.warn('Websockets are not yet supported by Mist, using default IPC connection');
+            argv.rpc = null;
+            return 'ipc';
+        } else
+            return 'ipc';
     }
 
     get rpcConnectConfig() {
@@ -258,12 +288,62 @@ class Settings {
         return argv.network;
     }
 
+    get syncmode() {
+        return argv.syncmode;
+    }
+
     get nodeOptions() {
         return argv.nodeOptions;
     }
 
-    loadUserData(path) {
-        const fullPath = this.constructUserDataPath(path);
+    get language() {
+        return this.loadConfig('ui.i18n');
+    }
+
+    set language(langCode) {
+        this.saveConfig('ui.i18n', langCode);
+    }
+
+    initConfig() {
+        global.config.insert({
+            ui: {
+                i18n: i18n.getBestMatchedLangCode(app.getLocale())
+            }
+        });
+    }
+
+    saveConfig(key, value) {
+        let obj = global.config.get(1);
+
+        if (!obj) {
+            this.initConfig();
+            obj = global.config.get(1);
+        }
+
+        if (lodash.get(obj, key) !== value) {
+            lodash.set(obj, key, value);
+            global.config.update(obj);
+
+            this._log.debug(`Settings: saveConfig('${key}', '${value}')`);
+            this._log.trace(global.config.data);
+        }
+    }
+
+    loadConfig(key) {
+        const obj = global.config.get(1);
+
+        if (!obj) {
+            this.initConfig();
+            return this.loadConfig(key);
+        }
+
+        this._log.trace(`Settings: loadConfig('${key}') = '${lodash.get(obj, key)}'`);
+
+        return lodash.get(obj, key);
+    }
+
+    loadUserData(path2) {
+        const fullPath = this.constructUserDataPath(path2);
 
         this._log.trace('Load user data', fullPath);
 
@@ -276,7 +356,9 @@ class Settings {
 
       // try to read it
         try {
-            return fs.readFileSync(fullPath, { encoding: 'utf8' });
+            const data = fs.readFileSync(fullPath, { encoding: 'utf8' });
+            this._log.debug(`Reading "${data}" from ${fullPath}`);
+            return data;
         } catch (err) {
             this._log.warn(`File not readable: ${fullPath}`, err);
         }
@@ -291,6 +373,7 @@ class Settings {
         const fullPath = this.constructUserDataPath(path2);
 
         try {
+            this._log.debug(`Saving "${data}" to ${fullPath}`);
             fs.writeFileSync(fullPath, data, { encoding: 'utf8' });
         } catch (err) {
             this._log.warn(`Unable to write to ${fullPath}`, err);

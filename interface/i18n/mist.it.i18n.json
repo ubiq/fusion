@@ -26,7 +26,7 @@
                 "fullscreen": "Schermo intero",
                 "default": "Default"
             },
-            "accounts": {
+            "file": {
                 "label": "Accounts",
                 "importPresale": "Importa Accounts",
                 "newAccount": "Nuovo account",
@@ -35,6 +35,7 @@
                 "backupMist": "Dati applicativi"
             },
             "develop": {
+                "uploadToSwarm": "Carica a Swarm",
                 "label": "Sviluppo",
                 "devTools": "Strumenti di sviluppo",
                 "devToolsMistUI": "Fusion UI",
@@ -45,7 +46,7 @@
                 "ethereumNode": "Nodo Ubiq",
                 "network": "Rete",
                 "mainNetwork": "Rete principale",
-                "startMining": "⛏ Inizia mining (solo Testnet)",
+                "startMining": "⛏ Inizia mining",
                 "stopMining": "⛏ Ferma mining",
                 "externalNode": "using external node",
                 "openRemix": "Open Remix IDE",
@@ -118,8 +119,8 @@
             "runningNodeFound": "Trovato nodo Ubiq in esecuzione!",
             "startingNode": "Avvio nodo Ubiq ...",
             "startedNode": "Avvio applicazione...",
-            "nodeConnectionTimeout": "Impossibile avviare un nodo Ubiq!<br><small>Se <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>hai installato Geth</a>, usa questo comando per eseguirlo:<br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> o riporta il problema </a></small>",
-            "nodeBinaryNotFound": "Impossibile trovare l'eseguibile del nodo Ubiq !<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> Per favore avvialo manualmente prima. </a> </small>",
+            "nodeConnectionTimeout": "Impossibile avviare un nodo Ubiq!<br><small>Se <a href='https://ubiqsmart.com' class='button' target='_blank'>hai installato Geth</a>, usa questo comando per eseguirlo:<br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> o riporta il problema </a></small>",
+            "nodeBinaryNotFound": "Impossibile trovare l'eseguibile del nodo Ubiq !<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> Per favore avvialo manualmente prima. </a> </small>",
             "nodeSyncing": "Il nodo Ubiq deve sincronizzarsi, attendere prego...",
             "nodeSyncInfo": "Scaricamento blocco __displayBlock__ di __highestBlock__.",
             "nodeSyncConnecting": "Alla ricerca di nodi...",
@@ -133,7 +134,6 @@
             "unableToBindPort": "Ubiq node cannot run. Is another instance already running?",
             "nodeSyncInfoStates": "Downloading block __displayBlock__ of __highestBlock__, <br> Downloading chain structure __displayState__ of __displayKnownStates__",
             "nodeSyncFoundPeers": "Connecting to __peers__ peers...",
-            "nodeSyncingStopped": "Ubiq node sync stopped",
             "peerSearchTimeout": "Skip peer search",
             "launchApp": "Launch Application",
             "clientBinaries": {
@@ -197,7 +197,9 @@
                 "showRawBytecode": "show raw data",
                 "showDecodedParameters": "show decoded parameters",
                 "lookupData": "Try to decode data",
-                "lookupDataExplainer": "Look this up on the internet"
+                "lookupDataExplainer": "Look this up on the internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Ubiq é una piattaforma decentralizzata per costruire applicazioni sfruttando una blockchain: software a prova di manomissione che puó trasferire valore e proprietá vivendo per sempre",

@@ -25,7 +25,7 @@ CRCCheck on
 # Require admin privledges when UAC is on
 RequestExecutionLevel admin
 
-!define APPNAME "Fusion"
+!searchreplace APPNAMENOHYPEN ${APPNAME} "-" " "
 !define GROUPNAME "Ubiq"
 !define HELPURL "https://github.com/ubiq/fusion/releases/issues"
 !define UPDATEURL "https://github.com/ubiq/fusion/releases"
@@ -34,13 +34,14 @@ RequestExecutionLevel admin
 
 ## These must be integers and can be set on the command line by NSIS with "/DMAJORVERSION=0 /DMINORVERSION=8 /DBUILDVERSION=7"
 #!define VERSIONMAJOR 0
-#!define VERSIONMINOR 8
-#!define VERSIONBUILD 9
+#!define VERSIONMINOR 9
+#!define VERSIONBUILD 1
 
 # Define some script globals
 Name "${GROUPNAME} ${APPNAME}"
-Icon "..\dist_mist\build\icon.ico"
-OutFile "..\dist_mist\release\fusion-installer-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.exe"
+Icon "..\dist_${TYPE}\build\icon.ico"
+OutFile "..\dist_${TYPE}\release\${APPNAME}-installer-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.exe"
+
 var FILEDIR
 var DATADIR
 var NODEDATADIR
@@ -66,7 +67,7 @@ ${EndIf}
     SetShellVarContext current
     StrCpy $DATADIR "$APPDATA\${APPNAME}"
     StrCpy $NODEDATADIR "$APPDATA\Ubiq"
-    StrCpy $SHORTCUTDIR "$SMPROGRAMS\${APPNAME}"
+    StrCpy $SHORTCUTDIR "$SMPROGRAMS\${APPNAMENOHYPEN}"
     StrCpy $DESKTOPDIR "$DESKTOP"
 
     ${If} ${RunningX64}
@@ -136,9 +137,10 @@ Section Mist MIST_IDX
     # set the installation directory as the destination for the following actions
     SetOutPath $TEMP
     # include both architecture zip files
-    file "..\dist_mist\release\${APPNAME}-win64-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
-    # file "..\dist_mist\release\${APPNAME}-win32-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
-    file "..\dist_mist\build\icon.ico"
+
+    file "..\dist_${TYPE}\release\${APPNAME}-win64-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
+    file "..\dist_${TYPE}\release\${APPNAME}-win32-${VERSIONMAJOR}-${VERSIONMINOR}-${VERSIONBUILD}.zip"
+    file "..\dist_${TYPE}\build\icon.ico"
 
     # Extract the zip file from TEMP to the user's selected installation directory
     ${If} ${RunningX64}
@@ -159,18 +161,18 @@ Section Mist MIST_IDX
 
     # create shortcuts with flags in the start menu programs directory
     createDirectory "$SHORTCUTDIR"
-    createShortCut "$SHORTCUTDIR\${APPNAME}.lnk" "$FILEDIR\${APPNAME}.exe" '--node-datadir="$NODEDATADIR"' "$FILEDIR\${APPNAME}.exe" 0
+    createShortCut "$SHORTCUTDIR\${APPNAMENOHYPEN}.lnk" "$FILEDIR\${APPNAMENOHYPEN}.exe" '--node-datadir="$NODEDATADIR"' "$FILEDIR\${APPNAMENOHYPEN}.exe" 0
 
     # create desktop shortcut
-    createShortCut "$DESKTOPDIR\${APPNAME}.lnk" "$FILEDIR\${APPNAME}.exe" '--node-datadir="$NODEDATADIR"' "$FILEDIR\${APPNAME}.exe" 0
+    createShortCut "$DESKTOPDIR\${APPNAMENOHYPEN}.lnk" "$FILEDIR\${APPNAMENOHYPEN}.exe" '--node-datadir="$NODEDATADIR"' "$FILEDIR\${APPNAMENOHYPEN}.exe" 0
 
     # create a shortcut for the program uninstaller
     CreateShortCut "$SHORTCUTDIR\Uninstall.lnk" "$FILEDIR\uninstall.exe"
 
     ## Firewall - add rules
-    #SimpleFC::AdvAddRule "Gubiq incoming peers (TCP:30303)" ""  6 1 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" 30388 "" "" ""
-    #SimpleFC::AdvAddRule "Gubiq outgoing peers (TCP:30303)" ""  6 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
-    #SimpleFC::AdvAddRule "Gubiq UDP discovery (UDP:30303)" "" 17 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
+    #SimpleFC::AdvAddRule "Gubiq incoming peers (TCP:30388)" ""  6 1 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" 30388 "" "" ""
+    #SimpleFC::AdvAddRule "Gubiq outgoing peers (TCP:30388)" ""  6 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
+    #SimpleFC::AdvAddRule "Gubiq UDP discovery (UDP:30388)" "" 17 2 1 2147483647 1 "$DATADIR\binaries\Geth\unpacked\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
 
     # write registry strings for uninstallation
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${GROUPNAME} ${APPNAME}" "DisplayName" "${GROUPNAME} ${APPNAME}"

@@ -26,7 +26,7 @@
                 "fullscreen": "フルスクリーンをトグルする",
                 "default": "Default"
             },
-            "accounts": {
+            "file": {
                 "label": "アカウント",
                 "importPresale": "アカウントを読み込む",
                 "newAccount": "新規アカウント",
@@ -35,6 +35,7 @@
                 "backupMist": "アプリケーションデータ"
             },
             "develop": {
+                "uploadToSwarm": "Swarmにアップロード",
                 "label": "Develop",
                 "devTools": "開発者用ツールをトグルする",
                 "devToolsMistUI": "Fusion UI",
@@ -45,7 +46,7 @@
                 "ethereumNode": "Ubiq ノード",
                 "network": "ネットワーク",
                 "mainNetwork": "メインネットワーク",
-                "startMining": "⛏ マイニングを始める (テストネット のみ)",
+                "startMining": "⛏ マイニングを始める",
                 "stopMining": "⛏ マイニングを中止する",
                 "externalNode": "using external node",
                 "openRemix": "Open Remix IDE",
@@ -118,8 +119,8 @@
             "runningNodeFound": "走っているUbiq nodeを見つけました!",
             "startingNode": "Ubiq ノードを開始しています。",
             "startedNode": "アプリケーションを開始しています...",
-            "nodeConnectionTimeout": "Ubiq nodeをスタート出来ませんでした!<br><small>もし<a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>Geth</a>をインストールしているならば,このコマンドを使ってみてください: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'>もしくは問題を報告して下さい。 </a></small>",
-            "nodeBinaryNotFound": "Ubiq node バイナリーが見つかりませんでした。<br><small> <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'> 手動でスタートして下さい。 </a> </small>",
+            "nodeConnectionTimeout": "Ubiq nodeをスタート出来ませんでした!<br><small>もし<a href='https://ubiqsmart.com' class='button' target='_blank'>Gubiq</a>をインストールしているならば,このコマンドを使ってみてください: <br> <code>gubiq --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'>もしくは問題を報告して下さい。 </a></small>",
+            "nodeBinaryNotFound": "Ubiq node バイナリーが見つかりませんでした。<br><small> <a href='https://ubiqsmart.com' class='button' target='_blank'> 手動でスタートして下さい。 </a> </small>",
             "nodeSyncing": "Ubiq node は同期中です...",
             "nodeSyncInfo": "blockをダウンロードしています。 __displayBlock__ of __highestBlock__.",
             "nodeSyncConnecting": "ピアーを探しています。...",
@@ -134,7 +135,6 @@
             "unableToBindPort": "Ubiq node cannot run. Is another instance already running?",
             "nodeSyncInfoStates": "Downloading block __displayBlock__ of __highestBlock__, <br> Downloading chain structure __displayState__ of __displayKnownStates__",
             "nodeSyncFoundPeers": "Connecting to __peers__ peers...",
-            "nodeSyncingStopped": "Ubiq node sync stopped",
             "launchApp": "Launch Application",
             "clientBinaries": {
                 "scanning": "Checking for node update...",
@@ -197,7 +197,9 @@
                 "showRawBytecode": "show raw data",
                 "showDecodedParameters": "show decoded parameters",
                 "lookupData": "Try to decode data",
-                "lookupDataExplainer": "Look this up on the internet"
+                "lookupDataExplainer": "Look this up on the internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Ubiq は分散型のプラットフォームで、ブロックチェーン上でアプリケーションを作成することが出来ます。価値を転送することが出来、永続的に稼働するセキュリティの高いソフトウェアを作ることが出来ます。",

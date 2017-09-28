@@ -12,6 +12,15 @@
                 "showAll": "Mostrar Todos",
                 "quit": "Fechar __app__"
             },
+            "file": {
+                "label": "Arquivos",
+                "importPresale": "Importar conta",
+                "newAccount": "Nova conta",
+                "backup": "Cópia de segurança",
+                "backupKeyStore": "Contas",
+                "backupMist": "Carteiras, contratos e etc",
+                "swarmUpload": "Subir arquivo para Swarm..."
+            },
             "edit": {
                 "label": "Editar",
                 "undo": "Desfazer",
@@ -26,15 +35,8 @@
                 "fullscreen": "Modo de tela cheia",
                 "default": "Default"
             },
-            "accounts": {
-                "label": "Contas",
-                "importPresale": "Importar conta",
-                "newAccount": "Nova conta",
-                "backup": "Cópia de segurança",
-                "backupKeyStore": "Contas",
-                "backupMist": "Carteiras, contratos e etc"
-            },
             "develop": {
+                "uploadToSwarm": "Upload no Swarm",
                 "label": "Desenvolvimento",
                 "devTools": "Mostrar ferramentas de desenvolvedor",
                 "devToolsMistUI": "Interface Mist",
@@ -45,7 +47,7 @@
                 "ethereumNode": "Node",
                 "network": "Rede",
                 "mainNetwork": "Rede principal",
-                "startMining": "⛏ Iniciar mineração (somente em teste)",
+                "startMining": "⛏ Iniciar mineração",
                 "stopMining": "⛏ Parar mineração",
                 "externalNode": "using external node",
                 "openRemix": "Open Remix IDE",
@@ -118,8 +120,8 @@
             "runningNodeFound": "Node Ubiq encontrado!",
             "startingNode": "Iniciando Node...",
             "startedNode": "Iniciando aplicativo...",
-            "nodeConnectionTimeout": "Não pode inicializar um Node!<br><small> Instale <a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>um manualmente</a>, e use esse comando para executa-lo: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ethereum/mist/issues' class='button' target='_blank'> Caso não consiga, entre em contato </a></small>",
-            "nodeBinaryNotFound": "Nó não encontrado!<br><small><a href='https://www.ethereum.org/cli#geth' class='button' target='_blank'>Instale um manualmente</a></small>",
+            "nodeConnectionTimeout": "Não pode inicializar um Node!<br><small> Instale <a href='https://ubiqsmart.com' class='button' target='_blank'>um manualmente</a>, e use esse comando para executa-lo: <br> <code>geth --ipcpath __path__</code></small><br> <small><a href='https://github.com/ubiq/fusion/issues' class='button' target='_blank'> Caso não consiga, entre em contato </a></small>",
+            "nodeBinaryNotFound": "Nó não encontrado!<br><small><a href='https://ubiqsmart.com' class='button' target='_blank'>Instale um manualmente</a></small>",
             "nodeSyncing": "Sincronizando, favor aguarde...",
             "nodeSyncInfoStates": "Carregando bloco __displayBlock__ de __highestBlock__, <br> Lendo estrutura __displayState__ de __displayKnownStates__",
             "nodeSyncInfo": "Carregando bloco  __displayBlock__ de __highestBlock__.",
@@ -135,7 +137,6 @@
             "nodeError": "Ubiq node connection error :'(",
             "unableToBindPort": "Ubiq node cannot run. Is another instance already running?",
             "nodeSyncFoundPeers": "Connecting to __peers__ peers...",
-            "nodeSyncingStopped": "Ubiq node sync stopped",
             "clientBinaries": {
                 "scanning": "Checking for node update...",
                 "downloading": "Downloading new node...",
@@ -197,7 +198,9 @@
                 "showRawBytecode": "show raw data",
                 "showDecodedParameters": "show decoded parameters",
                 "lookupData": "Try to decode data",
-                "lookupDataExplainer": "Look this up on the internet"
+                "lookupDataExplainer": "Look this up on the internet",
+                "overBlockGasLimit": "The gas required for this execution could exceed the block gas limit.",
+                "notEnoughGas": "Gas might not be enough to successfully finish this transaction.<br>Click here to increase the gas amount."
             },
             "onboarding": {
                 "description": "Ubiq é uma plataforma decentralizada para construir aplicativos no blockchain: apps a prova de fraude, censura ou corrupção que podem transferir valor e títulos de propriedade",
