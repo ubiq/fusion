@@ -19,9 +19,6 @@ const check = exports.check = () => {
     case 'mist':
         str = 'fusion';		// we need to search for Fusion in the release:name
         break;
-    case 'fusion':
-        str = 'fusion';
-        break;
     case 'wallet':
         str = 'wallet';
         break;
@@ -33,16 +30,9 @@ const check = exports.check = () => {
     })
     .then((res) => {
         const releases = _.filter(res.body, (release) => {
-            // as at v0.9.1 the 'release.name' does not contain the words Mist, Fusion or Wallet
-            // as a result the new version check fails. All fusion releases to date have the word
-            // 'Version' in the release.name .. so we can search for that and check will succeed.
-            // If future release names include the words 'Fusion' and 'Wallet' then the below hack
-            // can be removed. Refer to the naming returned by the ethereum/mist/releases API call
-            // eg. "name": "Ethereum Wallet and Mist 0.9.1",
             return (
                 !_.get(release, 'draft')
                 && _.get(release, 'name', '').toLowerCase().indexOf(str) >= 0
-                || _.get(release, 'name', '').indexOf('Version') >= 0	// nasty workaround for fusion
             );
         });
 
