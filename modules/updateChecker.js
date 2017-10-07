@@ -17,7 +17,7 @@ const check = exports.check = () => {
 
     switch (Settings.uiMode) {  // eslint-disable-line default-case
     case 'mist':
-        str = 'mist';
+        str = 'fusion';		// we need to search for Fusion in the release:name
         break;
     case 'wallet':
         str = 'wallet';
