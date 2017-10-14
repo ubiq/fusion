@@ -137,7 +137,7 @@ const argv = require('yargs')
             requiresArg: false,
             nargs: 0,
             describe: 'Disable checks for the presence of automatic time sync on your OS.',
-            group: 'Mist options:',
+            group: 'Fusion options:',
             type: 'boolean',
         },
         '': {
