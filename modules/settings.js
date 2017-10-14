@@ -115,14 +115,14 @@ const argv = require('yargs')
             type: 'string',
             group: 'Fusion options:',
         },
-        syncmode: {
+        /*syncmode: {
             demand: false,
             requiresArg: true,
             describe: 'Geth synchronization mode: [fast|light|full]',
             nargs: 1,
             type: 'string',
-            group: 'Mist options:',
-        },
+            group: 'Fusion options:',
+        },*/
         version: {
             alias: 'v',
             demand: false,
@@ -165,10 +165,10 @@ for (const optIdx in argv) {
 if (argv.ipcpath) {
     argv.nodeOptions.push('--ipcpath', argv.ipcpath);
 }
-
+/*
 if (argv.nodeOptions && argv.nodeOptions.syncmode) {
     argv.push('--syncmode', argv.nodeOptions.syncmode);
-}
+}*/
 
 class Settings {
     init() {
@@ -240,7 +240,7 @@ class Settings {
         if (argv.rpc && argv.rpc.indexOf('http') === 0)
             return 'http';
         if (argv.rpc && argv.rpc.indexOf('ws:') === 0) {
-            this._log.warn('Websockets are not yet supported by Mist, using default IPC connection');
+            this._log.warn('Websockets are not yet supported by Fusion, using default IPC connection');
             argv.rpc = null;
             return 'ipc';
         } else
@@ -294,11 +294,11 @@ class Settings {
     get network() {
         return argv.network;
     }
-
+    /*
     get syncmode() {
         return argv.syncmode;
     }
-
+    */
     get nodeOptions() {
         return argv.nodeOptions;
     }
