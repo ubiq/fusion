@@ -57,15 +57,15 @@ const argv = require('yargs')
             type: 'string',
             group: 'Fusion options:',
         },
-        swarmurl: {
+        /*swarmurl: {
             demand: false,
             default: 'http://localhost:8500',
-            describe: 'URL serving the Swarm HTTP API. If null, Mist will open a local node.',
+            describe: 'URL serving the Swarm HTTP API. If null, Fusion will open a local node.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
             group: 'Fusion options:',
-        },
+        },*/
         gubiqpath: {
             demand: false,
             describe: 'Path to Gubiq executable to use instead of default.',
@@ -223,11 +223,11 @@ class Settings {
     get inAutoTestMode() {
         return !!process.env.TEST_MODE;
     }
-
+    /*
     get swarmURL() {
         return argv.swarmurl;
     }
-
+    */
     get gethPath() {
         return argv.gubiqpath;
     }
