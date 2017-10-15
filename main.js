@@ -79,7 +79,7 @@ if (Settings.uiMode === 'wallet') {
 
 // - MIST
 } else {
-    log.info('Starting in Mist mode');
+    log.info('Starting in Fusion mode');
 
     let url = (Settings.inProductionMode)
         ? `file://${__dirname}/interface/index.html`
