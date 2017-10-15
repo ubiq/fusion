@@ -6,7 +6,7 @@
                 "linux": {
                     "x64": {
                         "download": {
-                            "url": "https://ubiqsmart.com/releases/gubiq/gubiq-linux-amd64-1.5.12.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-1.5.12.tar.gz",
                             "type": "tar",
                             "md5": "88da7dc66f0238652985431ebc82f653",
                             "bin": "gubiq-linux-amd64-1.5.12/gubiq-linux-amd64"
@@ -23,7 +23,7 @@
                 "mac": {
                     "x64": {
                         "download": {
-                            "url": "https://ubiqsmart.com/releases/gubiq/gubiq-darwin-amd64-1.5.12.tar.gz",
+                            "url": "http://staging.ubiqsmart.com/releases/gubiq/gubiq-darwin-amd64-1.5.12.tar.gz",
                             "type": "tar",
                             "md5": "5408fa1404f8769e594f929d04808810",
                             "bin": "gubiq-darwin-amd64-1.5.12/gubiq-darwin-amd64"
@@ -40,7 +40,7 @@
                 "win": {
                     "x64": {
                         "download": {
-                            "url": "http://ubiqsmart.com/releases/gubiq/gubiq-windows-amd64-1.5.12.zip",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-1.5.12.zip",
                             "type": "zip",
                             "md5": "90e68151ef928122922e62d671d7e57f",
                             "bin": "gubiq-windows-amd64-1.5.12\\gubiq-windows-4.0-amd64.exe"
