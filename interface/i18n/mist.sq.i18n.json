@@ -224,7 +224,7 @@
             "onboarding": {
                 "description": "Ubiq është një platformë e decentralizuar për ndërtim aplikacionesh në një zinxhir blloqesh (blockchain) me gjuhën e vet të programimit",
                 "goToTestnet": "Përdor rrjetin testues (Rinkeby)",
-                "goToTestnetDescription": "Testo lirshëm teknologjinë në një rrjet test pa përdorur ether të vërtetë.",
+                "goToTestnetDescription": "Ju mund të ndryshoni më vonë në një rrjet test / vetësh për të testuar lirshëm teknologjinë në një mjedis sandboxed nga menyja 'develop'.",
                 "gotoMainnet": "Përdor rrjetin kryesor",
                 "gotoMainnetDescription": " Ju do të keni nevojë për pak Ether në mënyrë që të krijoni dhe zbatoni kontrata. Mos u shqetësoni, ne do ju ndihmojmë që të gjeni sa duhet...",
                 "doYouHaveAWalletFile": "A keni një skedë kulete?",

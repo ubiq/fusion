@@ -202,7 +202,7 @@
             "onboarding": {
                 "description": "Ubiq ist eine dezentrale Plattform, um Anwendungen auf einer Blockchain zu bauen: Fälschungssichere Software, die Werte und Vermögen übertragen kann und für immer besteht",
                 "goToTestnet": "Verwende das Testnetz (Rinkeby)",
-                "goToTestnetDescription": "Teste die Technologie frei in der Testnetz-Sandbox, ",
+                "goToTestnetDescription": "Sie können später in ein Test / Solo-Netzwerk wechseln, um die Technologie in einer Sandbox-Umgebung im Menü 'Entwickeln' frei zu testen.",
                 "gotoMainnet": "Verwende das Hauptnetz",
                 "gotoMainnetDescription": " Du wirst etwas Ether benötigen, um Verträge anzulegen und auszuführen. Wir werden dir helfen, etwas zu bekommen ...",
                 "doYouHaveAWalletFile": "Hast du eine Wallet-Datei?",

@@ -204,7 +204,7 @@
             "onboarding": {
                 "description": "Ubiq er en desentralisert plattform for å bygge applikasjoner på en blokkjede: sabotasjesikker programvare som kan overføre verdi og eiendom, og som lever evig",
                 "goToTestnet": "Bruk testnettet",
-                "goToTestnetDescription": "Test teknologien fritt i en sandboks (testnett), uten å bruke ekte ubiq.",
+                "goToTestnetDescription": "Du kan senere bytte til et test / solo nettverk for å teste teknologien fritt i et sandkassert miljø fra utviklingsmenyen.",
                 "gotoMainnet": "Bruk hovednettverket",
                 "gotoMainnetDescription": " Du trenger noen ubiq for å skape og utføre kontrakter. Ikke bekymre deg, vi vil hjelpe deg å skaffe noen...",
                 "doYouHaveAWalletFile": "Har du en lommebok-fil?",
