@@ -243,7 +243,7 @@
             "onboarding": {
                 "description" : "Ubiq is a platform for decentralized blockchain apps with a fully featured programming language",
                 "goToTestnet" : "Use the test network",
-                "goToTestnetDescription" : "Test the technology freely in a sandboxed testnet, without using real ubiq.",
+                "goToTestnetDescription" : "You can later change to a test/solo network to test the technology freely in a sandboxed environment from the 'develop' menu.",
                 "gotoMainnet" : "Use the main network",
                 "gotoMainnetDescription" : "You’ll need some Ubiq in order to create and execute contracts. Don't worry, we'll help you get some...",
                 "doYouHaveAWalletFile" : "Do you have a wallet file?",

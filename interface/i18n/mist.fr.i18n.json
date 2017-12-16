@@ -204,7 +204,7 @@
             "onboarding": {
                 "description": "Ubiq est une plateforme décentralisée pour la création d'applications sur une blockchain (chaîne de blocs) : logiciel inviolable qui peut transférer de la valeur et de la propriété et qui vit pour toujours",
                 "goToTestnet": "Utiliser le réseau Testnet",
-                "goToTestnetDescription": "Testez la technologie librement sur le réseau sandboxé (bac à sable), sans utiliser d'ubiq réel.",
+                "goToTestnetDescription": "Vous pouvez ensuite passer à un réseau de test / solo pour tester la technologie librement dans un environnement en bac à sable à partir du menu «développer».",
                 "gotoMainnet": "Utiliser le réseau réel",
                 "gotoMainnetDescription": "Vous aurez besoin de quelques Ubiq afin de créer et exécuter des contrats. Ne vous en faites pas, nous allons vous aider à en obtenir...",
                 "doYouHaveAWalletFile": "Avez-vous un fichier wallet ?",

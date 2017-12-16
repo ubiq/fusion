@@ -234,7 +234,7 @@
             "onboarding": {
                 "description": "Ubiq is een decentraal platform voor het bouwen van applicaties op een blockchain: software die immuun is voor fraude en levenslang waarde en eigendom over kan brengen",
                 "goToTestnet": "Gebruik het test netwerk",
-                "goToTestnetDescription": "Test de technologie vrij in een testongeving, zonder echte Ubiq te gebruiken.",
+                "goToTestnetDescription": "Je kunt later overschakelen naar een test- / solenetwerk om de technologie vrij te testen in een sandbox-omgeving vanuit het menu 'Ontwikkelen'.",
                 "gotoMainnet": "Gebruik hoofdnetwerk",
                 "gotoMainnetDescription": "Je zult een beetje Ubiq nodig hebben om contracten uit te voeren. Geen zorgen, we helpen je met het verkrijgen...",
                 "doYouHaveAWalletFile": "Heb je een wallet bestand?",
