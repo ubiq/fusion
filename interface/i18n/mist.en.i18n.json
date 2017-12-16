@@ -36,6 +36,7 @@
                 "languages": "Language",
                 "default": "Default",
                 "langCodes": {
+                    "ca": "Català",
                     "de": "Deutsch",
                     "en": "English",
                     "es": "Español",
@@ -60,7 +61,7 @@
                 "devToolsWalletUI": "Wallet UI",
                 "devToolsWebview": "__webview__",
                 "runTests": "Run tests",
-                "logFiles": "Show log file",
+                "logFiles": "Show log files",
                 "openRemix": "Open Remix IDE",
                 "externalNode": "using external node",
                 "ethereumNode": "Ubiq Node",
@@ -162,6 +163,7 @@
             "nodeSyncFoundPeers": "Connecting to __peers__ peers...",
             "peerSearchTimeout": "Skip peer search",
             "launchApp": "Launch Application",
+            "retryConnection": "Retry Connection",
             "clientBinaries": {
                 "scanning": "Checking for node update...",
                 "downloading": "Downloading new node...",
