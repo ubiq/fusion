@@ -26,7 +26,7 @@ const argv = require('yargs')
             alias: 'm',
             demand: false,
             default: defaultConfig.mode,
-            describe: 'App UI mode: wallet, mist.',
+            describe: 'App UI mode: wallet, fusion.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
@@ -35,7 +35,7 @@ const argv = require('yargs')
         node: {
             demand: false,
             default: null,
-            describe: 'Node to use: gubiq, eth',
+            describe: 'Node to use: gubiq',
             requiresArg: true,
             nargs: 1,
             type: 'string',
@@ -166,7 +166,7 @@ if (argv.nodeOptions && argv.nodeOptions.syncmode) {
 class Settings {
     init() {
         const logLevel = {logLevel: argv.loglevel};
-        const logFolder = {logFolder: `${this.appDataPath}/Mist/logs`};
+        const logFolder = {logFolder: `${this.appDataPath}/Fusion/logs`};
         const loggerOptions = Object.assign(argv, logLevel, logFolder);
         logger.setup(loggerOptions);
         this._log = logger.create('Settings');
@@ -175,7 +175,7 @@ class Settings {
 
         // If -v flag provided, log the Mist version and exit
         if (argv.version) {
-            this._log.info(`Mist v${this.appVersion}`);
+            this._log.info(`Fusion v${this.appVersion}`);
             process.exit(0);
         }
 
