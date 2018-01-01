@@ -1,23 +1,328 @@
 const { app } = require('electron');
 const path = require('path');
 const fs = require('fs');
-const logger = require('./utils/logger');
 const packageJson = require('../package.json');
 const _ = require('./utils/underscore');
 const lodash = require('lodash');
 
-import { syncBuildConfig, syncFlags } from './core/settings/actions';
+import { syncBuildConfig, syncFlags, setSwarmEnableOnStart } from './core/settings/actions';
+import logger from './utils/logger';
 
-// try loading in config file
+const settingsLog = logger.create('Settings');
+
+let instance = null;
+
+class Settings {
+    constructor() {
+        if (!instance) {
+            instance = this;
+        }
+
+        return instance;
+    }
+
+    init() {
+        const logLevel = {logLevel: argv.loglevel};
+        const logFolder = {logFolder: path.join(this.userDataPath, 'logs')};
+        const loggerOptions = Object.assign(argv, logLevel, logFolder);
+        logger.setup(loggerOptions);
+
+        store.dispatch(syncFlags(argv));
+
+        // If -v flag provided, log the Fusion version and exit
+        if (argv.version) {
+            settingsLog.info(`Fusion v${this.appVersion}`);
+            process.exit(0);
+        }
+
+        // Some Linux installations require this setting:
+        if (argv.ignoreGpuBlacklist) {
+            app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');
+            store.dispatch({ type: '[MAIN]:IGNORE_GPU_BLACKLIST:SET' });
+        }
+
+        if (this.inAutoTestMode) {
+            settingsLog.info('AUTOMATED TESTING');
+            store.dispatch({ type: '[MAIN]:TEST_MODE:SET' });
+        }
+
+        settingsLog.info(`Running in production mode: ${this.inProductionMode}`);
+
+        if (this.rpcMode === 'http') {
+            settingsLog.warn('Connecting to a node via HTTP instead of ipcMain. This is less secure!!!!'.toUpperCase());
+        }
+
+        store.dispatch(syncBuildConfig('appVersion', packageJson.version));
+        store.dispatch(syncBuildConfig('rpcMode', this.rpcMode));
+        store.dispatch(syncBuildConfig('productionMode', this.inProductionMode));
+        store.dispatch(syncBuildConfig('uiMode', this.uiMode));
+    }
+
+
+    // @returns "Application Support/Fusion" in production mode
+    // @returns "Application Support/Electron" in development mode
+    get userDataPath() {
+        return app.getPath('userData');
+    }
+
+    get dbFilePath() {
+        const dbFileName = (this.inAutoTestMode) ? 'fusion.test.lokidb' : 'fusion.lokidb';
+        return path.join(this.userDataPath, dbFileName);
+    }
+
+    get appDataPath() {
+    // Application Support/
+        return app.getPath('appData');
+    }
+
+    get userHomePath() {
+        return app.getPath('home');
+    }
+
+    get cli() {
+        return argv;
+    }
+
+    get appVersion() {
+        return packageJson.version;
+    }
+
+    get appName() {
+        return this.uiMode === 'mist' ? 'Fusion' : 'Ubiq Wallet';
+    }
+
+    get appLicense() {
+        return packageJson.license;
+    }
+
+    get uiMode() {
+        return (_.isString(argv.mode)) ? argv.mode.toLowerCase() : argv.mode;
+    }
+
+    get inProductionMode() {
+        return defaultConfig.production;
+    }
+
+    get inAutoTestMode() {
+        return !!process.env.TEST_MODE;
+    }
+
+    get swarmURL() {
+        return argv.swarmurl;
+    }
+
+    get gethPath() {
+        return argv.gubiqpath;
+    }
+
+    get ethPath() {
+        return argv.ethpath;
+    }
+
+    get rpcMode() {
+        if (argv.rpc && argv.rpc.indexOf('http') === 0)
+            return 'http';
+        if (argv.rpc && argv.rpc.indexOf('ws:') === 0) {
+            settingsLog.warn('Websockets are not yet supported by Fusion, using default IPC connection');
+            argv.rpc = null;
+            return 'ipc';
+        } else
+            return 'ipc';
+    }
+
+    get rpcConnectConfig() {
+        if (this.rpcMode === 'ipc') {
+            return {
+                path: this.rpcIpcPath,
+            };
+        }
+
+        return {
+            hostPort: this.rpcHttpPath,
+        };
+    }
+
+    get rpcHttpPath() {
+        return (this.rpcMode === 'http') ? argv.rpc : null;
+    }
+
+    get rpcIpcPath() {
+        let ipcPath = (this.rpcMode === 'ipc') ? argv.rpc : null;
+
+        if (ipcPath) {
+            return ipcPath;
+        }
+
+        ipcPath = this.userHomePath;
+
+        if (process.platform === 'darwin') {
+            ipcPath += '/Library/Ubiq/gubiq.ipc';
+        } else if (process.platform === 'freebsd' ||
+            process.platform === 'linux' ||
+            process.platform === 'sunos') {
+            ipcPath += '/.ubiq/gubiq.ipc';
+        } else if (process.platform === 'win32') {
+            ipcPath = '\\\\.\\pipe\\gubiq.ipc';
+        }
+
+        settingsLog.debug(`IPC path: ${ipcPath}`);
+
+        return ipcPath;
+    }
+
+    get nodeType() {
+        return argv.node;
+    }
+
+    get network() {
+        return argv.network;
+    }
+
+    get syncmode() {
+        return argv.syncmode;
+    }
+
+    get nodeOptions() {
+        return argv.nodeOptions;
+    }
+
+    get language() {
+        return this.loadConfig('ui.i18n');
+    }
+
+    set language(langCode) {
+        this.saveConfig('ui.i18n', langCode);
+    }
+
+    get enableSwarmOnStart() {
+        if (global.mode === 'wallet') {
+            return false;
+        }
+
+        if (argv.swarm) {
+            return true;
+        }
+
+        const enableOnStart = this.loadConfig('swarm.enableOnStart');
+
+        // Sync to redux
+        if (enableOnStart) {
+            store.dispatch(setSwarmEnableOnStart());
+        }
+
+        return enableOnStart;
+    }
+
+    set enableSwarmOnStart(bool) {
+        this.saveConfig('swarm.enableOnStart', bool);
+    }
+
+    get skiptimesynccheck() {
+        return argv.skiptimesynccheck;
+    }
+
+    initConfig() {
+        global.config.insert({
+            ui: {
+                i18n: i18n.getBestMatchedLangCode(app.getLocale())
+            },
+            swarm: {
+                enableOnStart: argv.swarm
+            }
+        });
+    }
+
+    saveConfig(key, value) {
+        let obj = global.config.get(1);
+
+        if (!obj) {
+            this.initConfig();
+            obj = global.config.get(1);
+        }
+
+        if (lodash.get(obj, key) !== value) {
+            lodash.set(obj, key, value);
+            global.config.update(obj);
+
+            settingsLog.debug(`Settings: saveConfig('${key}', '${value}')`);
+            settingsLog.trace(global.config.data);
+        }
+    }
+
+    loadConfig(key) {
+        const obj = global.config.get(1);
+
+        if (!obj) {
+            this.initConfig();
+            return this.loadConfig(key);
+        }
+
+        settingsLog.trace(`Settings: loadConfig('${key}') = '${lodash.get(obj, key)}'`);
+
+        return lodash.get(obj, key);
+    }
+
+    loadUserData(path2) {
+        const fullPath = this.constructUserDataPath(path2);
+
+        settingsLog.trace('Load user data', fullPath);
+
+      // check if the file exists
+        try {
+            fs.accessSync(fullPath, fs.R_OK);
+        } catch (err) {
+            return null;
+        }
+
+      // try to read it
+        try {
+            const data = fs.readFileSync(fullPath, { encoding: 'utf8' });
+            settingsLog.debug(`Reading "${data}" from ${fullPath}`);
+            return data;
+        } catch (err) {
+            settingsLog.warn(`File not readable: ${fullPath}`, err);
+        }
+
+        return null;
+    }
+
+
+    saveUserData(path2, data) {
+        if (!data) return; // return so we dont write null, or other invalid data
+
+        const fullPath = this.constructUserDataPath(path2);
+
+        try {
+            settingsLog.debug(`Saving "${data}" to ${fullPath}`);
+            fs.writeFileSync(fullPath, data, { encoding: 'utf8' });
+        } catch (err) {
+            settingsLog.warn(`Unable to write to ${fullPath}`, err);
+        }
+    }
+
+
+    constructUserDataPath(filePath) {
+        return path.join(this.userDataPath, filePath);
+    }
+}
+
+module.exports = new Settings();
+
+/* ==========================
+Command line argument parsing
+============================= */
+
+// Load config
 const defaultConfig = {
     mode: 'mist',
     production: false,
 };
+
 try {
     _.extend(defaultConfig, require('../config.json'));
-} catch (err) {
+} catch (error) {
+    settingsLog.error(error);
 }
-
 
 const argv = require('yargs')
     .usage('Usage: $0 [Fusion options] [Node options]')
@@ -26,7 +331,7 @@ const argv = require('yargs')
             alias: 'm',
             demand: false,
             default: defaultConfig.mode,
-            describe: 'App UI mode: wallet, fusion.',
+            describe: 'App UI mode: wallet, mist.',
             requiresArg: true,
             nargs: 1,
             type: 'string',
@@ -57,8 +362,15 @@ const argv = require('yargs')
             nargs: 1,
             type: 'string',
             group: 'Fusion options:',
+        },/*
+        swarm: {
+            describe: 'Enable Swarm on start.',
+            requiresArg: false,
+            nargs: 0,
+            type: 'boolean',
+            group: 'Fusion options:',
         },
-        /*swarmurl: {
+        swarmurl: {
             demand: false,
             default: 'http://localhost:8500',
             describe: 'URL serving the Swarm HTTP API. If null, Fusion will open a local node.',
@@ -74,8 +386,8 @@ const argv = require('yargs')
             nargs: 1,
             type: 'string',
             group: 'Fusion options:',
-        },/*
-        ethpath: {
+        },
+        /*ethpath: {
             demand: false,
             describe: 'Path to Eth executable to use instead of default.',
             requiresArg: true,
@@ -107,11 +419,11 @@ const argv = require('yargs')
             nargs: 1,
             type: 'string',
             group: 'Fusion options:',
-        },
-        /*syncmode: {
+        },/*
+        syncmode: {
             demand: false,
             requiresArg: true,
-            describe: 'Geth synchronization mode: [fast|light|full]',
+            describe: 'Gubiq synchronization mode: [fast|light|full]',
             nargs: 1,
             type: 'string',
             group: 'Fusion options:',
@@ -158,269 +470,7 @@ for (const optIdx in argv) {
 if (argv.ipcpath) {
     argv.nodeOptions.push('--ipcpath', argv.ipcpath);
 }
-/*
+
 if (argv.nodeOptions && argv.nodeOptions.syncmode) {
     argv.push('--syncmode', argv.nodeOptions.syncmode);
-}*/
-
-class Settings {
-    init() {
-        const logLevel = {logLevel: argv.loglevel};
-        const logFolder = {logFolder: `${this.appDataPath}/Fusion/logs`};
-        const loggerOptions = Object.assign(argv, logLevel, logFolder);
-        logger.setup(loggerOptions);
-        this._log = logger.create('Settings');
-
-        store.dispatch(syncFlags(argv));
-
-        // If -v flag provided, log the Mist version and exit
-        if (argv.version) {
-            this._log.info(`Fusion v${this.appVersion}`);
-            process.exit(0);
-        }
-
-        // Some Linux installations require this setting:
-        if (argv.ignoreGpuBlacklist) {
-            app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');
-            store.dispatch({ type: '[MAIN]:IGNORE_GPU_BLACKLIST:SET' });
-        }
-
-        if (this.inAutoTestMode) {
-            this._log.info('AUTOMATED TESTING');
-            store.dispatch({ type: '[MAIN]:TEST_MODE:SET' });
-        }
-
-        this._log.info(`Running in production mode: ${this.inProductionMode}`);
-
-        if (this.rpcMode === 'http') {
-            this._log.warn('Connecting to a node via HTTP instead of ipcMain. This is less secure!!!!'.toUpperCase());
-        }
-
-        store.dispatch(syncBuildConfig('appVersion', packageJson.version));
-        store.dispatch(syncBuildConfig('rpcMode', this.rpcMode));
-        store.dispatch(syncBuildConfig('productionMode', this.inProductionMode));
-        store.dispatch(syncBuildConfig('uiMode', this.uiMode));
-    }
-
-    get userDataPath() {
-    // Application Aupport/Fusion
-        return app.getPath('userData');
-    }
-
-    get dbFilePath() {
-        const dbFileName = (this.inAutoTestMode) ? 'fusion.test.lokidb' : 'fusion.lokidb';
-        return path.join(this.userDataPath, dbFileName);
-    }
-
-    get appDataPath() {
-    // Application Support/
-        return app.getPath('appData');
-    }
-
-    get userHomePath() {
-        return app.getPath('home');
-    }
-
-    get cli() {
-        return argv;
-    }
-
-    get appVersion() {
-        return packageJson.version;
-    }
-
-    get appName() {
-        return this.uiMode === 'mist' ? 'Fusion' : 'Ubiq Wallet';
-    }
-
-    get appLicense() {
-        return packageJson.license;
-    }
-
-    get uiMode() {
-        return (_.isString(argv.mode)) ? argv.mode.toLowerCase() : argv.mode;
-    }
-
-    get inProductionMode() {
-        return defaultConfig.production;
-    }
-
-    get inAutoTestMode() {
-        return !!process.env.TEST_MODE;
-    }
-    /*
-    get swarmURL() {
-        return argv.swarmurl;
-    }
-    */
-    get gethPath() {
-        return argv.gubiqpath;
-    }
-    /*
-    get ethPath() {
-        return argv.ethpath;
-    }
-    */
-    get rpcMode() {
-        if (argv.rpc && argv.rpc.indexOf('http') === 0)
-            return 'http';
-        if (argv.rpc && argv.rpc.indexOf('ws:') === 0) {
-            this._log.warn('Websockets are not yet supported by Fusion, using default IPC connection');
-            argv.rpc = null;
-            return 'ipc';
-        } else
-            return 'ipc';
-    }
-
-    get rpcConnectConfig() {
-        if (this.rpcMode === 'ipc') {
-            return {
-                path: this.rpcIpcPath,
-            };
-        }
-
-        return {
-            hostPort: this.rpcHttpPath,
-        };
-    }
-
-    get rpcHttpPath() {
-        return (this.rpcMode === 'http') ? argv.rpc : null;
-    }
-
-    get rpcIpcPath() {
-        let ipcPath = (this.rpcMode === 'ipc') ? argv.rpc : null;
-
-        if (ipcPath) {
-            return ipcPath;
-        }
-
-        ipcPath = this.userHomePath;
-
-        if (process.platform === 'darwin') {
-            ipcPath += '/Library/Ubiq/gubiq.ipc';
-        } else if (process.platform === 'freebsd' ||
-       process.platform === 'linux' ||
-       process.platform === 'sunos') {
-            ipcPath += '/.ubiq/gubiq.ipc';
-        } else if (process.platform === 'win32') {
-            ipcPath = '\\\\.\\pipe\\gubiq.ipc';
-        }
-
-        this._log.debug(`IPC path: ${ipcPath}`);
-
-        return ipcPath;
-    }
-
-    get nodeType() {
-        return argv.node;
-    }
-
-    get network() {
-        return argv.network;
-    }
-    /*
-    get syncmode() {
-        return argv.syncmode;
-    }
-    */
-    get nodeOptions() {
-        return argv.nodeOptions;
-    }
-
-    get language() {
-        return this.loadConfig('ui.i18n');
-    }
-
-    set language(langCode) {
-        this.saveConfig('ui.i18n', langCode);
-    }
-
-    get skiptimesynccheck() {
-        return argv.skiptimesynccheck;
-    }
-
-    initConfig() {
-        global.config.insert({
-            ui: {
-                i18n: i18n.getBestMatchedLangCode(app.getLocale())
-            }
-        });
-    }
-
-    saveConfig(key, value) {
-        let obj = global.config.get(1);
-
-        if (!obj) {
-            this.initConfig();
-            obj = global.config.get(1);
-        }
-
-        if (lodash.get(obj, key) !== value) {
-            lodash.set(obj, key, value);
-            global.config.update(obj);
-
-            this._log.debug(`Settings: saveConfig('${key}', '${value}')`);
-            this._log.trace(global.config.data);
-        }
-    }
-
-    loadConfig(key) {
-        const obj = global.config.get(1);
-
-        if (!obj) {
-            this.initConfig();
-            return this.loadConfig(key);
-        }
-
-        this._log.trace(`Settings: loadConfig('${key}') = '${lodash.get(obj, key)}'`);
-
-        return lodash.get(obj, key);
-    }
-
-    loadUserData(path2) {
-        const fullPath = this.constructUserDataPath(path2);
-
-        this._log.trace('Load user data', fullPath);
-
-      // check if the file exists
-        try {
-            fs.accessSync(fullPath, fs.R_OK);
-        } catch (err) {
-            return null;
-        }
-
-      // try to read it
-        try {
-            const data = fs.readFileSync(fullPath, { encoding: 'utf8' });
-            this._log.debug(`Reading "${data}" from ${fullPath}`);
-            return data;
-        } catch (err) {
-            this._log.warn(`File not readable: ${fullPath}`, err);
-        }
-
-        return null;
-    }
-
-
-    saveUserData(path2, data) {
-        if (!data) return; // return so we dont write null, or other invalid data
-
-        const fullPath = this.constructUserDataPath(path2);
-
-        try {
-            this._log.debug(`Saving "${data}" to ${fullPath}`);
-            fs.writeFileSync(fullPath, data, { encoding: 'utf8' });
-        } catch (err) {
-            this._log.warn(`Unable to write to ${fullPath}`, err);
-        }
-    }
-
-
-    constructUserDataPath(filePath) {
-        return path.join(this.userDataPath, filePath);
-    }
-
 }
-
-module.exports = new Settings();
