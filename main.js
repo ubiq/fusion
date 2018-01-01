@@ -291,7 +291,7 @@ async function handleOnboarding() {
             // Handle changing network types (mainnet, testnet)
             ipcMain.on('onBoarding_changeNet', (e, testnet) => {
                 const newType = ethereumNode.type;
-                const newNetwork = testnet ? 'rinkeby' : 'main';
+                const newNetwork = 'main';
 
                 log.debug('Onboarding change network', newType, newNetwork);
 

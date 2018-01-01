@@ -376,7 +376,7 @@ class EthereumNode extends EventEmitter {
 
                 switch (network) {
 
-                // Starts Ropsten network
+                // Starts Test network
                 case 'test':
                     args = [
                         '--testnet',
@@ -389,7 +389,7 @@ class EthereumNode extends EventEmitter {
                 // Starts Rinkeby network
                 case 'rinkeby':
                     args = [
-                        '--rinkeby',
+                        '--testnet',
                         //'--syncmode', syncMode,
                         '--cache', ((process.arch === 'x64') ? '1024' : '512'),
                         '--ipcpath', Settings.rpcIpcPath
