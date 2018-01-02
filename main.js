@@ -280,7 +280,7 @@ async function handleOnboarding() {
     // Fetch accounts; if none, show the onboarding process
     const resultData = await ethereumNode.send('eth_accounts', []);
 
-    if (ethereumNode.isGeth && (resultData.result === null || (_.isArray(resultData.result) && resultData.result.length === 0))) {
+    if (ethereumNode.isGeth && (resultData.result === null || (_.isArray(resultData.result) && resultData.result.length === 0)) && ethereumNode.network === 'main') {
         log.info('No accounts setup yet, lets do onboarding first.');
 
         await new Q((resolve, reject) => {
@@ -291,7 +291,7 @@ async function handleOnboarding() {
             // Handle changing network types (mainnet, testnet)
             ipcMain.on('onBoarding_changeNet', (e, testnet) => {
                 const newType = ethereumNode.type;
-                const newNetwork = 'main';
+                const newNetwork = testnet ? 'test' : 'main';
 
                 log.debug('Onboarding change network', newType, newNetwork);
 
