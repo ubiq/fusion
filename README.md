@@ -1,8 +1,5 @@
 # Fusion Browser
 
-[![Build Status develop branch](https://travis-ci.org/ethereum/mist.svg?branch=develop)](https://travis-ci.org/ethereum/mist)
-[![Code Climate](https://codeclimate.com/github/ethereum/mist/badges/gpa.svg)](https://codeclimate.com/github/ethereum/mist)
-
 The Fusion browser is the tool of choice to browse and use Ðapps.
 
 For the Fusion API see the [MISTAPI.md](MISTAPI.md).
@@ -11,7 +8,16 @@ Please note that this repository is the Electron host for the Meteor based walle
 
 ## Help and troubleshooting
 
-Please check the [Fusion troubleshooting guide](https://github.com/ubiq/fusion/wiki).
+In order to get help regarding Fusion or Ubiq Wallet, please follow:
+
+1.  Please check the [Fusion troubleshooting guide](https://github.com/ubiq/fusion/wiki).
+1.  Go to the [Ubiq Discord](https://discordapp.com/invite/HF6vEGF) to connect with the community for instant help.
+1.  Search for [similar issues](https://github.com/ubiq/fusion/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Canonical%22) and potential help.
+1.  Or create a [new issue](https://github.com/ubiq/fusion/issues).
+
+## How to contribute
+
+Contributions via Pull Requests are so welcome. You can see where to help looking for issues with the [Enhancement](https://github.com/ubiq/fusion/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Enhancement%22) or [Bug](https://github.com/ubiq/fusion/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22) labels. We can help guiding you towards the solution.
 
 ## Installation
 
@@ -21,79 +27,104 @@ you can simply run the executeable after download.
 
 For updating simply download the new version and copy it over the old one (keep a backup of the old one if you want to be sure).
 
-#### Config folder
-The data folder for Fusion is stored in other places:
+### Linux .zip installs
 
-- Windows `%APPDATA%\Fusion`
-- macOS `~/Library/Application\ Support/Fusion`
-- Linux `~/.config/Fusion`
+In order to install from .zip files, please install `libgconf2-4` first:
+
+```bash
+apt-get install libgconf2-4
+```
+
+### Config folder
+
+The data folder for Mist is stored in other places:
+
+* Windows `%APPDATA%\Fusion`
+* macOS `~/Library/Application\ Support/Fusion`
+* Linux `~/.config/Fusion`
 
 ## Development
 
 For development, a Meteor server will need to be started to assist with live reload and CSS injection.
-Once a Mist version is released the Meteor frontend part is bundled using the `meteor-build-client` npm package to create pure static files.
+Once a Fusion version is released the Meteor frontend part is bundled using the `meteor-build-client` npm package to create pure static files.
 
 ### Dependencies
 
 To run fusion in development you need:
 
-- [Node.js](https://nodejs.org) `v7.x` (use the prefered installation method for your OS)
-- [Meteor](https://www.meteor.com/install) javascript app framework
-- [Yarn](https://yarnpkg.com/) package manager
-- [Electron](http://electron.atom.io/) `v1.7.9` cross platform desktop app framework
-- [Gulp](http://gulpjs.com/) build and automation system
+* [Node.js](https://nodejs.org) `v7.x` (use the prefered installation method for your OS)
+* [Meteor](https://www.meteor.com/install) javascript app framework
+* [Yarn](https://yarnpkg.com/) package manager
+* [Electron](http://electron.atom.io/) `v1.8.4` cross platform desktop app framework
+* [Gulp](http://gulpjs.com/) build and automation system
 
 Install the latter ones via:
 
-    $ curl https://install.meteor.com/ | sh
-    $ curl -o- -L https://yarnpkg.com/install.sh | bash
-    $ yarn global add electron@1.7.9
-    $ yarn global add gulp
+```bash
+$ curl https://install.meteor.com/ | sh
+$ curl -o- -L https://yarnpkg.com/install.sh | bash
+$ yarn global add electron@1.8.4
+$ yarn global add gulp
+```
 
 ### Initialisation
 
 Now you're ready to initialise Fusion for development:
 
-    $ git clone https://github.com/ubiq/fusion.git
-    $ cd fusion
+```bash
+$ git clone https://github.com/ubiq/fusion.git
+$ cd fusion
+$ yarn
+```
 
 To update Fusion in the future, run:
 
-    $ cd fusion
-    $ git pull
-    $ yarn
+```bash
+$ cd fusion
+$ git pull
+$ yarn
+```
 
 ### Run Fusion
 
 For development we start the interface with a Meteor server for autoreload etc.
-*Start the interface in a separate terminal window:*
+_Start the interface in a separate terminal window:_
 
-    $ cd fusion/interface && meteor --no-release-check
+```bash
+$ cd fusion/interface && meteor --no-release-check
+```
 
 In the original window you can then start Fusion with:
 
-    $ cd fusion
-    $ yarn dev:electron
+```bash
+$ cd fusion
+$ yarn dev:electron
+```
 
-*NOTE: client-binaries (e.g. [gubiq](https://github.com/ubiq/go-ubiq)) specified in [clientBinaries.json](https://github.com/ubiq/fusion/blob/master/clientBinaries.json) will be checked during every startup and downloaded if out-of-date, binaries are stored in the [config folder](#config-folder)*
+_NOTE: client-binaries (e.g. [gubiq](https://github.com/ubiq/go-ubiq)) specified in [clientBinaries.json](https://github.com/ethereum/mist/blob/master/clientBinaries.json) will be checked during every startup and downloaded if out-of-date, binaries are stored in the [config folder](#config-folder)_
 
-*NOTE: use `--help` to display available options, e.g. `--loglevel debug` (or `trace`) for verbose output*
+_NOTE: use `--help` to display available options, e.g. `--loglevel debug` (or `trace`) for verbose output_
 
 ### Run the Wallet
 
-Start the wallet app for development, *in a separate terminal window:*
+Start the wallet app for development, _in a separate terminal window:_
 
-    $ cd fusion/interface && meteor --no-release-check
+```bash
+$ cd fusion/interface && meteor --no-release-check
+```
 
-    // and in another terminal
+In another terminal:
 
-    $ cd my/path/meteor-dapp-wallet/app && meteor --port 3050
+```bash
+$ cd my/path/meteor-dapp-wallet/app && meteor --port 3050
+```
 
 In the original window you can then start Fusion using wallet mode:
 
-    $ cd fusion
-    $ yarn dev:electron --mode wallet
-
+```bash
+$ cd fusion
+$ yarn dev:electron --mode wallet
+```
 
 ### Connecting to node via HTTP instead of IPC
 
@@ -103,7 +134,6 @@ it's less secure than using the default IPC method.
 ```bash
 $ yarn dev:electron --rpc http://localhost:8588
 ```
-
 
 ### Passing options to Gubiq
 
@@ -123,7 +153,6 @@ $ yarn dev:electron --rpc /my/gubiq.ipc
 
 ...is the same as doing...
 
-
 ```bash
 $ yarn dev:electron --rpc /my/gubiq.ipc --node-ipcpath /my/gubiq.ipc
 ```
@@ -132,7 +161,6 @@ $ yarn dev:electron --rpc /my/gubiq.ipc --node-ipcpath /my/gubiq.ipc
 
 See this guide to quickly set up a local private network on your computer:
 https://gist.github.com/evertonfraga/9d65a9f3ea399ac138b3e40641accf23
-
 
 ### Using Fusion with a privatenet
 
@@ -150,7 +178,6 @@ You can also launch `gubiq` separately with the same options prior starting
 Fusion.
 
 
-
 ### Deployment
 
 Our build system relies on [gulp](http://gulpjs.com/) and [electron-builder](https://github.com/electron-userland/electron-builder/).
@@ -159,73 +186,80 @@ Our build system relies on [gulp](http://gulpjs.com/) and [electron-builder](htt
 
 [meteor-build-client](https://github.com/frozeman/meteor-build-client) bundles the [meteor](https://www.meteor.com/)-based interface. Install it via:
 
-    $ npm install -g meteor-build-client
+```bash
+$ npm install -g meteor-build-client
+```
 
 Furthermore cross-platform builds require additional [`electron-builder` dependencies](https://github.com/electron-userland/electron-builder/wiki/Multi-Platform-Build#linux). On macOS those are:
 
-    // windows deps
-    $ brew install wine --without-x11 mono makensis
+Windows deps:
 
-    // linux deps
-    $ brew install gnu-tar libicns graphicsmagick xz
+```bash
+$ brew install wine --without-x11 mono makensis
+```
+
+Linux deps:
+
+```bash
+$ brew install gnu-tar libicns graphicsmagick xz
+```
 
 #### Generate packages
 
 To generate the binaries for Fusion run:
 
-    $ gulp
+```bash
+$ gulp
+```
 
-To generate the Ethereum Wallet (this will pack the one Ðapp from https://github.com/ubiq/meteor-dapp-wallet):
+To generate the Ubiq Wallet (this will pack the one Ðapp from https://github.com/ubiq/meteor-dapp-wallet):
 
-    $ gulp --wallet
+```bash
+$ gulp --wallet
+```
 
 The generated binaries will be under `dist_mist/release` or `dist_wallet/release`.
-
-
-#### Options
 
 ##### platform
 
 To build binaries for specific platforms (default: all available) use the following flags:
 
-    // on mac
-    $ gulp --win --linux --mac
-
-    // on linux
-    $ gulp --win --linux
-
-    // on win
-    $ gulp --win
+```bash
+$ gulp --mac      # mac
+$ gulp --linux    # linux
+$ gulp --win      # windows
+```
 
 ##### walletSource
 
-With the `walletSource` you can specify the Wallet branch to use, default is `master`:
+With the `walletSource` you can specify the Wallet branch to use, default is `develop`:
 
     $ gulp --wallet --walletSource develop
 
-
 Options are:
 
-- `master`
-- `develop`
-- `local` Will try to build the wallet from [mist/]../meteor-dapp-wallet/app
+* `develop`
+* `local` Will try to build the wallet from [mist/]../meteor-dapp-wallet/app
 
-*Note: applicable only when combined with `--wallet`*
+_Note: applicable only when combined with `--wallet`_
 
-#### skipTasks
+##### skipTasks
 
 When building a binary, you can optionally skip some tasks — generally for testing purposes.
 
-  $ gulp --mac --skipTasks=bundling-interface,release-dist
+```bash
+$ gulp --mac --skipTasks=bundling-interface,release-dist
+```
 
-#### Checksums
+##### Checksums
 
 Spits out the MD5 checksums of distributables.
 
 It expects installer/zip files to be in the generated folders e.g. `dist_mist/release`
 
-    $ gulp checksums [--wallet]
-
+```bash
+$ gulp checksums [--wallet]
+```
 
 ## Testing
 
@@ -233,10 +267,14 @@ Tests are ran using [Spectron](https://github.com/electron/spectron/), a webdriv
 
 First make sure to build Mist with:
 
-    $ gulp
+```bash
+$ gulp
+```
 
 Then run the tests:
 
-    $ gulp test
+```bash
+$ gulp test
+```
 
-*Note: Integration tests are not yet supported on Windows.*
+_Note: Integration tests are not yet supported on Windows._

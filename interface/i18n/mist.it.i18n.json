@@ -218,9 +218,9 @@
                 "protectDescription": "Scegli una password per il tuo nuovo account. Rendila piu complicata possibile come se dovesse proteggere le tue chiavi di casa!",
                 "accountTitle": "Stra-caricalo!",
                 "accountTitleTestnet": "Mina un pó!",
-                "etherDescription": "La rete ubiq é basata su di un token chiamato “Ubiq”. Avrai bisogno di una piccola quantitá di ubiq per fare qualsiasi cosa sulla rete Ubiq.",
-                "loadItDescription": "Se possiedi giá Bitcoin, o qualunque altra cryptovaluta, puoi facilmente convertirla in ubiq usando bittrex. <br><br> Raccomandiamo di depositare da <strong>0.25 a 1 ubiq</strong>.",
-                "mineItDescription": "<strong>Sulla rete di test (testnet) puoi minare ubiq in autonomia utilizzando il menu' <em>Sviluppo</em> e selezionando <em>Inizia Mining</em>. </strong> <br> <strong> NON TENTARE DI INVIARE UBQ REALE A QUESTO INDIRIZZO</strong>",
+                "etherDescription": "La rete Ubiq é basata su di un token chiamato “UBQ”. Avrai bisogno di una piccola quantitá di UBQ per fare qualsiasi cosa sulla rete Ubiq.",
+                "loadItDescription": "Se possiedi giá Bitcoin, o qualunque altra cryptovaluta, puoi facilmente convertirla in eth usando changelly. <br><br> Raccomandiamo di depositare da <strong>0.25 a 1 UBQ</strong>.",
+                "mineItDescription": "<strong>Sulla rete di test (testnet) puoi minare UBQ in autonomia utilizzando il menu' <em>Sviluppo</em> e selezionando <em>Inizia Mining</em>. </strong> <br> <strong> NON TENTARE DI INVIARE UBQ REALE A QUESTO INDIRIZZO</strong>",
                 "you": "TU",
                 "etherbase": "Account principale (ubiqbase)",
                 "depositBitcoin": "Deposita Bitcoin",
@@ -241,7 +241,9 @@
                     "wrongPassword": "Password errata.",
                     "importFailed": "Impossibile importare il file: __error__"
                 },
-                "viaShapeshift": "Instant conversion via <a href='https://shapeshift.io/' target='_blank'>Shapeshift</a>",
+
+                "buyEther": "Buy UBQ",
+                "viaChangelly": "Accepts cryptocurrency and credit card via <a href='https://changelly.com/' target='_blank'>Changelly</a>",
                 "syncMessage": "Block __displayBlock__ of __highestBlockString__",
                 "syncMessageWithStates": "Block __displayBlock__ of __highestBlockString__ (Chain structure __statesPercent__%)",
                 "startingSync": "Getting ready to sync.."

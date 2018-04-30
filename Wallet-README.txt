@@ -15,8 +15,6 @@ Example:
 
     $ gubiq --datadir /my/chain/ --networkid 42 --ipcpath ~/Library/Ubiq/gubiq.ipc
 
-
-
 ### Original contract
 
 Once you start the app while running a testnet, the wallet need to deploy an original contract,
@@ -27,28 +25,26 @@ as not the full code has to be deployed for every wallet.
 
 You need to make sure that the account displayed for the original wallet creation is unlocked and has at least 1 UBQ.
 
-
 ## Paths
 
 The paths which store your wallets database and node are different:
 
-The wallet stores its data at:
-- Mac: ~/Library/Application Support/Ubiq Wallet
-- Windows: %APPDATA%\Roaming\Ubiq Wallet
-- Linux: ~/.config/Ubiq Wallet
+The wallet (Mist) stores its data at:
+
+* Mac: ~/Library/Application Support/Fusion
+* Windows: %APPDATA%\Roaming\Fusion
+* Linux: ~/.config/Fusion
 
 The nodes data is stored at:
-- Mac: ~/Library/Ubiq
-- Windows: %APPDATA%\Roaming\Ubiq
-- Linux: ~/.ubiq
 
+* Mac: ~/Library/Ubiq
+* Windows: %APPDATA%\Roaming\Ubiq
+* Linux: ~/.ubiq
 
 ## Issues
 
 If you find issues or have suggestion, please report them at
 https://github.com/ubiq/meteor-dapp-wallet/issues
-
-
 
 ## Repository
 
@@ -57,8 +53,6 @@ https://github.com/ubiq/meteor-dapp-wallet
 
 And the binary application code, which wraps the wallet app can be found at
 https://github.com/ubiq/fusion/tree/wallet
-
-
 
 ## Bundling the wallet
 

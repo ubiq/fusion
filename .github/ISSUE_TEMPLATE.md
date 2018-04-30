@@ -1,7 +1,7 @@
 - [ ] I've asked for help in the [Ubiq  Discord](https://discord.gg/HF6vEGF) before filing this issue.
 
-
 <!-- Please fill in these information below: -->
+
 ```
 Version: `0.0.0`
 OS & Version: windows/linux/osx
@@ -11,7 +11,7 @@ Number of blocks synchronized: 0
 
 <!--
 
-Check the already existing issues to keep duplicates at a minimum.
+Check the already existing issues to keep duplicates to a minimum.
 
 
 You'll find possible solutions for these common issues below on Fusion Wiki: https://github.com/ubiq/fusion/wiki.
@@ -29,7 +29,7 @@ You'll find possible solutions for these common issues below on Fusion Wiki: htt
 
 When creating this issue, if possible add the following to your report:
 - Screenshots
-- Check the console, of Mist (`CTRL/CMD + ALT + i`) and take a screenshot
+- Check the console, of Fusion (`CTRL/CMD + ALT + i`) and take a screenshot
 - Log files
   - Go to the menu `Develop -> Show log files`
   - Zip and upload `all.log` and any other appropriate `category/*.log` files
