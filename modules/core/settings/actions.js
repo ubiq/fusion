@@ -1,10 +1,10 @@
 const Settings = require('../../settings');
 
 import logger from '../../utils/logger';
-import swarmNode from '../../swarmNode';
-import { SwarmState } from './reducer';
+//import swarmNode from '../../swarmNode';
+//import { SwarmState } from './reducer';
 
-const swarmLog = logger.create('swarm');
+//const swarmLog = logger.create('swarm');
 
 export function syncFlags(argv) {
   return { type: '[MAIN]:CLI_FLAGS:SYNC', payload: { cliFlags: argv } };
@@ -110,7 +110,7 @@ export function getLanguage(event) {
   };
 }
 
-export function toggleSwarm(event) {
+/*export function toggleSwarm(event) {
   return (dispatch, getState) => {
     if (
       [SwarmState.Enabled, SwarmState.Enabling].includes(
@@ -174,8 +174,8 @@ export function toggleSwarm(event) {
       }
     }
   };
-}
+}*/
 
-export function setSwarmEnableOnStart() {
+/*export function setSwarmEnableOnStart() {
   return { type: '[MAIN]:SWARM:ENABLE_ON_START' };
-}
+}*/
