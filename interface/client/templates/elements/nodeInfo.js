@@ -78,6 +78,10 @@ Template['elements_nodeInfo'].onCreated(function() {
         console.log('Restart app operation again');
 
         TemplateVar.set(template, 'syncing', false);
+        mistInit(); // TODO
+        // This needs to be handled better, removing stops currentBlock
+        // from staying sync'd with node after restart app operation, leaving
+        // results in a reset of tabs. 
       }
     }
   });
