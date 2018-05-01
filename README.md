@@ -91,7 +91,7 @@ For development we start the interface with a Meteor server for autoreload etc.
 _Start the interface in a separate terminal window:_
 
 ```bash
-$ cd fusion/interface && meteor --no-release-check
+$ yarn dev:meteor
 ```
 
 In the original window you can then start Fusion with:
@@ -110,7 +110,7 @@ _NOTE: use `--help` to display available options, e.g. `--loglevel debug` (or `t
 Start the wallet app for development, _in a separate terminal window:_
 
 ```bash
-$ cd fusion/interface && meteor --no-release-check
+$ yarn dev:meteor
 ```
 
 In another terminal:
