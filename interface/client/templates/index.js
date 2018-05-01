@@ -34,7 +34,7 @@ Template.body.helpers({
     }
 
     if (_.isEmpty(location.hash)) {
-      $('title').text('Mist');
+      $('title').text('Fusion');
       return 'layout_main';
     } else {
       var renderWindow = location.hash.match(/#([a-zA-Z]*)_?/);
