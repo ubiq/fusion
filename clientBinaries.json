@@ -1,21 +1,21 @@
 {
     "clients": {
         "Geth": {
-            "version": "1.5.12",
+            "version": "1.5.13",
             "platforms": {
                 "linux": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-1.5.12.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-1.5.13.tar.gz",
                             "type": "tar",
-                            "md5": "88da7dc66f0238652985431ebc82f653",
-                            "bin": "gubiq-linux-amd64-1.5.12/gubiq-linux-amd64"
+                            "md5": "7b6a53f53ca893729b118d4ad0ac366f",
+                            "bin": "gubiq-linux-amd64-1.5.13/gubiq-linux-amd64"
                         },
                         "bin": "gubiq",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "1.5.12-flux" ]
+                                "output": [ "Gubiq", "1.5.13-flux" ]
                             }
                         }
                     }
@@ -23,16 +23,16 @@
                 "mac": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-darwin-amd64-1.5.12.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-darwin-amd64-1.5.13.tar.gz",
                             "type": "tar",
-                            "md5": "5408fa1404f8769e594f929d04808810",
-                            "bin": "gubiq-darwin-amd64-1.5.12/gubiq-darwin-amd64"
+                            "md5": "cdbdf872a3d43bb71e51ccf471d6fc91",
+                            "bin": "gubiq-darwin-amd64-1.5.13/gubiq-darwin-amd64"
                         },
                         "bin": "gubiq",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "1.5.12-flux" ]
+                                "output": [ "Gubiq", "1.5.13-flux" ]
                             }
                         }
                     }
@@ -40,16 +40,16 @@
                 "win": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-1.5.12.zip",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-1.5.13.zip",
                             "type": "zip",
-                            "md5": "90e68151ef928122922e62d671d7e57f",
-                            "bin": "gubiq-windows-amd64-1.5.12\\gubiq-windows-4.0-amd64.exe"
+                            "md5": "e60fcdcb3bb740d891673ca80d2d7d11",
+                            "bin": "gubiq-windows-amd64-1.5.13\\gubiq-windows-4.0-amd64.exe"
                         },
                         "bin": "gubiq.exe",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "1.5.12-flux" ]
+                                "output": [ "Gubiq", "1.5.13-flux" ]
                             }
                         }
                     }
