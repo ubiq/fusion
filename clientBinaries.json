@@ -1,21 +1,21 @@
 {
     "clients": {
         "Geth": {
-            "version": "2.0.1",
+            "version": "2.2.0",
             "platforms": {
                 "linux": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-2.0.1.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-2.2.0.tar.gz",
                             "type": "tar",
-                            "md5": "edebe52f00ff58927ab2cb7da1339d91",
-                            "bin": "gubiq-linux-amd64-2.0.1/gubiq-linux-amd64"
+                            "md5": "b4a437908e1e14ad6443abf811f41db0",
+                            "bin": "gubiq-linux-amd64-2.2.0/gubiq-linux-amd64"
                         },
                         "bin": "gubiq",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "2.0.1-uip1" ]
+                                "output": [ "Gubiq", "2.2.0-woke" ]
                             }
                         }
                     }
@@ -23,16 +23,16 @@
                 "mac": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-darwin-amd64-2.0.1.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-darwin-amd64-2.2.0.tar.gz",
                             "type": "tar",
-                            "md5": "b5d43a11a837aefa3aebdf0f75a06db7",
-                            "bin": "gubiq-darwin-amd64-2.0.1/gubiq-darwin-amd64"
+                            "md5": "7d9b4e34afe6ec5245079a3e2bd01fa9",
+                            "bin": "gubiq-darwin-amd64-2.2.0/gubiq-darwin-amd64"
                         },
                         "bin": "gubiq",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "2.0.1-uip1" ]
+                                "output": [ "Gubiq", "2.2.0-woke" ]
                             }
                         }
                     }
@@ -40,16 +40,16 @@
                 "win": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-2.0.1.zip",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-2.2.0.zip",
                             "type": "zip",
-                            "md5": "985ff208672ea0c3299d3f0cdbf46592",
-                            "bin": "gubiq-windows-amd64-2.0.1\\gubiq-windows-4.0-amd64.exe"
+                            "md5": "47a3b306f1c27ec9daa7d96f8461b362",
+                            "bin": "gubiq-windows-amd64-2.2.0\\gubiq-windows-4.0-amd64.exe"
                         },
                         "bin": "gubiq.exe",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "2.0.1-uip1" ]
+                                "output": [ "Gubiq", "2.2.0-woke" ]
                             }
                         }
                     }
