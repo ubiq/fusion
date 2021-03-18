@@ -1,21 +1,21 @@
 {
     "clients": {
         "Geth": {
-            "version": "3.0.1",
+            "version": "5.0.0",
             "platforms": {
                 "linux": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-3.0.1.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-linux-amd64-5.0.0.tar.gz",
                             "type": "tar",
-                            "md5": "4335cc6ef9108e77dded26e9dced8732",
-                            "bin": "gubiq-linux-amd64-3.0.1/gubiq-linux-amd64"
+                            "md5": "6bab61a659e35f8d5133c4bea5ba98bb",
+                            "bin": "gubiq-linux-amd64-5.0.0/gubiq-linux-amd64"
                         },
                         "bin": "gubiq",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "3.0.1-andromeda" ]
+                                "output": [ "Gubiq", "5.0.0-taurus" ]
                             }
                         }
                     }
@@ -23,16 +23,16 @@
                 "mac": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-darwin-amd64-3.0.1.tar.gz",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-darwin-amd64-5.0.0.tar.gz",
                             "type": "tar",
-                            "md5": "93e26b15cbe1a7097d75bc105089f674",
-                            "bin": "gubiq-darwin-amd64-3.0.1/gubiq-darwin-amd64"
+                            "md5": "4771fbcf865893053eb7078893c97c87",
+                            "bin": "gubiq-darwin-amd64-5.0.0/gubiq-darwin-amd64"
                         },
                         "bin": "gubiq",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "3.0.1-andromeda" ]
+                                "output": [ "Gubiq", "5.0.0-taurus" ]
                             }
                         }
                     }
@@ -40,16 +40,16 @@
                 "win": {
                     "x64": {
                         "download": {
-                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-3.0.1.zip",
+                            "url": "http://staging.ubiqsmart.io/releases/gubiq/gubiq-windows-amd64-5.0.0.zip",
                             "type": "zip",
-                            "md5": "2e6776a266692033dd586990836a419c",
-                            "bin": "gubiq-windows-amd64-3.0.1\\gubiq-windows-4.0-amd64.exe"
+                            "md5": "da236d0e7314a8599446a5192817745a",
+                            "bin": "gubiq-windows-amd64-5.0.0\\gubiq-windows-4.0-amd64.exe"
                         },
                         "bin": "gubiq.exe",
                         "commands": {
                             "sanity": {
                                 "args": ["version"],
-                                "output": [ "Gubiq", "3.0.1-andromeda" ]
+                                "output": [ "Gubiq", "5.0.0-taurus" ]
                             }
                         }
                     }
